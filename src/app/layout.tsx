@@ -47,7 +47,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ar" dir="rtl" suppressHydrationWarning className="dark">
+    <html lang="ar" dir="rtl" suppressHydrationWarning>
       <body
         className={`${inter.variable} ${ibmPlexArabic.variable} antialiased presentation-root`}
       >

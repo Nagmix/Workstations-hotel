@@ -1,15 +1,26 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { BOARD_DECISIONS, PRESENTATION_META } from "../../data/slides";
+import { PRESENTATION_META, VISION_TAGLINE } from "../../data/slides";
 import {
   IconGlyph,
   blurIn,
   containerStagger,
   fadeUp,
-  scaleIn,
 } from "../primitives";
 
+/**
+ * Slide 17 — Closing (cinematic finale)
+ *
+ * Center-aligned hero with three ambient emerald blobs. The vision
+ * tagline is rendered as a large `ts-gradient-text` headline. The
+ * closing principle ("نبني التقنية حول طريقة عمل تاج سبأ...") sits
+ * inside a deep-emerald inverse card. A small brand emblem
+ * (Sparkles + TAJ SABA) anchors the top. An accent divider with an
+ * emerald × separates the brand lockup "Digital Planetx × فندق تاج
+ * سبأ" from the headline. Subtitle "Building the Smart Hotel of the
+ * Future" closes the deck.
+ */
 export default function Slide17Closing() {
   return (
     <motion.section
@@ -21,108 +32,80 @@ export default function Slide17Closing() {
       aria-roledescription="slide"
       aria-label="Closing"
     >
-      {/* Ambient halo */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.85 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
-        className="pointer-events-none absolute inset-0 flex items-center justify-center"
-      >
-        <div
-          className="h-[60vh] w-[60vh] rounded-full opacity-30 blur-[90px]"
-          style={{
-            background:
-              "radial-gradient(circle, rgba(212,176,109,0.35) 0%, transparent 70%)",
-          }}
-        />
-      </motion.div>
+      {/* Ambient emerald blobs */}
+      <div className="ts-blob ts-blob-emerald w-[600px] h-[600px] -top-32 -left-32" />
+      <div className="ts-blob ts-blob-emerald w-[500px] h-[500px] -bottom-32 -right-24" />
+      <div className="ts-blob ts-blob-warm w-[400px] h-[400px] top-[30%] right-[20%] opacity-30" />
 
-      <div className="relative z-10 flex flex-col items-center gap-8 max-w-6xl w-full">
-        <motion.span variants={fadeUp} className="ts-pill">
+      <div className="relative z-10 flex flex-col items-center gap-6 max-w-5xl w-full">
+        {/* Brand emblem */}
+        <motion.div variants={fadeUp} className="flex items-center gap-3">
+          <div className="ts-icon-chip-solid !w-11 !h-11 !rounded-full">
+            <IconGlyph name="Sparkles" size={20} />
+          </div>
+          <div className="text-left">
+            <div className="lat text-sm font-semibold tracking-[0.18em] text-[var(--ts-text-primary)]">
+              TAJ SABA
+            </div>
+            <div className="text-[0.625rem] text-[var(--ts-text-muted)]">
+              تاج سبأ
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Closing pill */}
+        <motion.span variants={fadeUp} className="ts-pill-solid">
           الختام · Closing
         </motion.span>
 
-        {/* Core statement */}
+        {/* Hero gradient headline */}
+        <motion.h1
+          variants={blurIn}
+          className="ts-h1 ts-gradient-text leading-[1.15] max-w-4xl mx-auto text-balance"
+        >
+          {VISION_TAGLINE}
+        </motion.h1>
+
+        {/* Inverse emerald card with closing principle */}
         <motion.blockquote
           variants={blurIn}
-          className="ts-h1 text-[var(--ts-text-primary)] font-medium leading-[1.2] max-w-5xl"
+          custom={1}
+          className="ts-card-inverse w-full max-w-3xl px-8 py-5 lg:px-10 lg:py-6 m-0"
         >
-          “نبني التقنية حول طريقة عمل تاج سبأ،
-          <br />
-          لا نفرض على تاج سبأ طريقة عمل جاهزة.”
+          <p className="ts-h3 text-emerald-50 leading-[1.6] text-center font-normal m-0">
+            {PRESENTATION_META.closingLine}
+          </p>
         </motion.blockquote>
 
-        {/* Three decision chips */}
+        {/* Accent divider with × */}
         <motion.div
           variants={fadeUp}
-          className="flex flex-wrap items-center justify-center gap-3 max-w-4xl"
+          className="flex items-center gap-4 w-full max-w-md"
         >
-          {[
-            "رؤية معتمدة",
-            "نطاق موثق",
-            "خطة تنفيذ",
-          ].map((c, i) => (
-            <motion.span
-              key={c}
-              variants={scaleIn}
-              custom={i + 1}
-              className="px-4 py-2 rounded-full border border-[var(--ts-border-accent)] bg-[var(--ts-accent-softer)] text-sm text-[var(--ts-accent-bright-text)]"
-            >
-              {c}
-            </motion.span>
-          ))}
-        </motion.div>
-
-        {/* Board decisions count + lockup */}
-        <motion.div
-          variants={fadeUp}
-          className="mt-4 grid grid-cols-1 md:grid-cols-[auto_1fr] gap-6 md:gap-10 items-center max-w-5xl"
-        >
-          {/* Big number */}
-          <motion.div variants={scaleIn} className="text-center md:text-right">
-            <div className="lat ts-display text-[var(--ts-accent)] font-semibold leading-none num">
-              08
-            </div>
-            <div className="ts-eyebrow text-[var(--ts-text-secondary)] mt-2">
-              نقاط قرار
-              <span className="mx-1.5 text-[var(--ts-text-faint)]">·</span>
-              Board Decisions
-            </div>
-          </motion.div>
-
-          <div className="md:ts-divider-vertical md:h-32 md:w-px hidden md:block" />
-
-          {/* Decision list */}
-          <motion.ul
-            variants={containerStagger}
-            className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2.5 text-right"
-          >
-            {BOARD_DECISIONS.map((d, i) => (
-              <motion.li
-                key={i}
-                variants={fadeUp}
-                custom={i}
-                className="flex items-start gap-2.5 text-sm text-[var(--ts-text-secondary)]"
-              >
-                <span className="ts-slide-index text-[var(--ts-accent)] text-xs mt-0.5 shrink-0">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <span className="leading-relaxed">{d}</span>
-              </motion.li>
-            ))}
-          </motion.ul>
+          <span className="flex-1 ts-divider-accent" />
+          <span className="text-[var(--ts-accent)] text-xl" dir="ltr">
+            ×
+          </span>
+          <span className="flex-1 ts-divider-accent" />
         </motion.div>
 
         {/* Brand lockup */}
         <motion.div
           variants={fadeUp}
-          className="mt-6 flex items-center gap-4 text-[var(--ts-text-muted)]"
+          className="flex flex-col items-center gap-1.5"
         >
-          <span className="lat text-sm tracking-[0.18em] uppercase font-medium">
-            {PRESENTATION_META.provider}
-          </span>
-          <span className="text-[var(--ts-accent)] text-base">×</span>
-          <span className="text-sm font-medium">{PRESENTATION_META.client}</span>
+          <div className="flex items-center gap-3" dir="ltr">
+            <span className="lat text-base font-semibold tracking-[0.18em] uppercase text-[var(--ts-text-primary)]">
+              {PRESENTATION_META.provider}
+            </span>
+            <span className="text-[var(--ts-accent)] text-xl">×</span>
+            <span className="text-base font-semibold text-[var(--ts-text-primary)]">
+              {PRESENTATION_META.client}
+            </span>
+          </div>
+          <p className="lat text-xs text-[var(--ts-text-muted)] tracking-[0.2em] uppercase">
+            Building the Smart Hotel of the Future
+          </p>
         </motion.div>
       </div>
     </motion.section>

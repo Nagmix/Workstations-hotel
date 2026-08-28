@@ -41,9 +41,9 @@ export default function Navigation({
             {totalStr}
           </span>
         </div>
-        <div className="hidden md:block w-40 h-px bg-[var(--ts-border-strong)] relative overflow-hidden">
+        <div className="hidden md:block w-40 h-1 bg-[var(--ts-bg-warm)] rounded-full relative overflow-hidden">
           <motion.div
-            className="absolute inset-y-0 left-0 bg-[var(--ts-accent)]"
+            className="absolute inset-y-0 left-0 bg-[var(--ts-accent)] rounded-full"
             initial={false}
             animate={{ width: `${progress}%` }}
             transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
@@ -53,7 +53,7 @@ export default function Navigation({
 
       {/* Center: brand (subtle) */}
       <div className="pointer-events-none hidden lg:flex items-center gap-3 absolute left-1/2 -translate-x-1/2 bottom-5 text-[var(--ts-text-faint)]">
-        <span className="lat text-[0.625rem] tracking-[0.24em] uppercase">
+        <span className="lat text-[0.625rem] tracking-[0.24em] uppercase font-medium">
           {PRESENTATION_META.brand}
         </span>
         <span className="text-[var(--ts-accent)] text-[0.625rem]">·</span>
@@ -95,7 +95,7 @@ function NavButton({
       onClick={onClick}
       disabled={disabled}
       aria-label={label}
-      className="group relative flex h-9 w-9 items-center justify-center rounded-full border border-[var(--ts-border-strong)] bg-[var(--ts-surface)]/80 backdrop-blur text-[var(--ts-text-secondary)] hover:text-[var(--ts-accent)] hover:border-[var(--ts-border-accent)] transition-colors duration-300 disabled:opacity-30 disabled:cursor-not-allowed"
+      className="group relative flex h-9 w-9 items-center justify-center rounded-full border border-[var(--ts-border-strong)] bg-[var(--ts-surface)] text-[var(--ts-text-secondary)] shadow-[var(--ts-shadow-soft)] hover:text-[var(--ts-accent)] hover:border-[var(--ts-border-accent)] hover:shadow-[var(--ts-shadow-elevated)] transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed"
     >
       {children}
     </button>

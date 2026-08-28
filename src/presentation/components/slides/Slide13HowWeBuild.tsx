@@ -5,11 +5,20 @@ import { BUILD_TIMELINE } from "../../data/slides";
 import {
   SlideHeader,
   containerStagger,
-  drawLine,
   fadeUp,
   scaleIn,
 } from "../primitives";
 
+/**
+ * Slide 13 — How We Build (11-phase timeline)
+ *
+ * Horizontal flowing timeline of all 11 build phases. Each phase is a
+ * compact card with a solid emerald numbered chip (pulse on the first
+ * node), Arabic title, and English label. A dashed emerald track runs
+ * behind the chips (lg+ only). Background uses ts-grid-bg for an
+ * engineering / blueprint feel. Bottom callout is an emerald-tinted
+ * accent card with a solid "ملاحظة" pill.
+ */
 export default function Slide13HowWeBuild() {
   return (
     <motion.section
@@ -17,11 +26,14 @@ export default function Slide13HowWeBuild() {
       animate="show"
       exit="hidden"
       variants={containerStagger}
-      className="slide-stage stage-top slide-pad"
+      className="slide-stage stage-top slide-pad relative"
       aria-roledescription="slide"
       aria-label="How we will build it"
     >
-      <div className="flex flex-col gap-7 w-full max-w-7xl mx-auto">
+      {/* Blueprint grid background */}
+      <div className="absolute inset-0 ts-grid-bg opacity-40 pointer-events-none" />
+
+      <div className="relative z-10 flex flex-col gap-6 w-full max-w-[1500px] mx-auto">
         <div className="flex flex-col gap-3">
           <SlideHeader
             index="13"
@@ -30,91 +42,71 @@ export default function Slide13HowWeBuild() {
           />
           <motion.h2
             variants={fadeUp}
-            className="ts-h2 text-[var(--ts-text-primary)] font-medium max-w-3xl"
+            className="ts-h2 text-[var(--ts-text-primary)] max-w-3xl"
           >
             مراحل مترابطة، مع تحقق من كل جزء قبل البناء فوقه.
           </motion.h2>
         </div>
 
-        {/* Horizontal timeline */}
-        <div className="mt-2 overflow-x-auto ts-scroll pb-3 -mx-2 px-2">
-          <div className="flex items-stretch gap-0 min-w-max lg:min-w-0 lg:justify-between">
+        {/* Horizontal timeline — 11 phases */}
+        <div className="relative mt-2">
+          {/* Connector track (behind chips, lg+ only) */}
+          <motion.div
+            variants={{
+              hidden: { scaleX: 0 },
+              show: {
+                scaleX: 1,
+                transition: { duration: 1.3, ease: [0.16, 1, 0.3, 1] },
+              },
+            }}
+            className="absolute top-8 left-0 right-0 h-0 border-t border-dashed hidden lg:block origin-left"
+            style={{ borderColor: "rgba(15, 118, 110, 0.4)" }}
+          />
+
+          <div className="relative grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-11 gap-2.5">
             {BUILD_TIMELINE.map((phase, i) => (
-              <div key={phase.step} className="contents">
-                {/* Node */}
-                <motion.div
-                  custom={i}
-                  variants={scaleIn}
-                  className="relative flex flex-col items-center text-center w-32 lg:w-auto lg:flex-1"
-                >
-                  {/* Connector line (before this node, drawn first except for index 0) */}
-                  {i > 0 && (
-                    <svg
-                      className="absolute top-5 right-[calc(100%+4px)] hidden lg:block"
-                      width="100%"
-                      height="2"
-                      viewBox="0 0 100 2"
-                      preserveAspectRatio="none"
-                      style={{ transform: "scaleX(-1)" }}
-                    >
-                      <motion.line
-                        x1="0"
-                        y1="1"
-                        x2="100"
-                        y2="1"
-                        stroke="var(--ts-border-strong)"
-                        strokeWidth="1"
-                        strokeDasharray="3 3"
-                        variants={drawLine}
-                        custom={i}
-                      />
-                    </svg>
-                  )}
-
-                  {/* Node dot */}
-                  <div className="relative mb-4">
+              <motion.div
+                key={phase.step}
+                custom={i}
+                variants={scaleIn}
+                className="ts-card p-3 lg:p-3.5 flex flex-col items-center text-center"
+              >
+                <div className="relative mb-2.5">
+                  <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[var(--ts-accent)] text-white text-xs font-semibold num shadow-[var(--ts-shadow-accent-soft)]">
+                    {phase.step}
+                  </div>
+                  {i === 0 && (
                     <motion.div
-                      variants={scaleIn}
-                      custom={i + 0.5}
-                      className="flex h-10 w-10 items-center justify-center rounded-full border border-[var(--ts-border-accent)] bg-[var(--ts-bg)] text-[var(--ts-accent)] ts-slide-index text-sm font-semibold"
-                    >
-                      {phase.step}
-                    </motion.div>
-                    {i === 0 && (
-                      <motion.div
-                        animate={{ opacity: [0.4, 1, 0.4] }}
-                        transition={{
-                          duration: 2.2,
-                          repeat: Infinity,
-                          ease: "easeInOut",
-                        }}
-                        className="absolute inset-0 rounded-full border border-[var(--ts-accent)]"
-                      />
-                    )}
-                  </div>
-
-                  {/* Phase label */}
-                  <div className="ts-h3 text-sm font-semibold text-[var(--ts-text-primary)] mb-0.5 leading-tight">
-                    {phase.title}
-                  </div>
-                  <div className="lat text-[0.625rem] text-[var(--ts-text-muted)] tracking-wider">
-                    {phase.en}
-                  </div>
-                </motion.div>
-              </div>
+                      animate={{ opacity: [0.3, 1, 0.3] }}
+                      transition={{
+                        duration: 2.2,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                      }}
+                      className="absolute inset-0 rounded-full border-2 border-[var(--ts-accent)]"
+                    />
+                  )}
+                </div>
+                <div className="text-[0.75rem] font-semibold text-[var(--ts-text-primary)] leading-tight mb-0.5">
+                  {phase.title}
+                </div>
+                <div className="lat text-[0.5625rem] text-[var(--ts-text-muted)] tracking-wider">
+                  {phase.en}
+                </div>
+              </motion.div>
             ))}
           </div>
         </div>
 
-        {/* Bottom strip */}
+        {/* Bottom callout — accent */}
         <motion.div
           variants={fadeUp}
-          className="mt-1 flex items-center gap-3 px-5 py-3.5 rounded-xl border border-[var(--ts-border)] bg-[rgba(255,255,255,0.015)] max-w-5xl"
+          className="ts-card-accent px-5 py-3.5 flex items-center gap-3"
         >
-          <span className="ts-eyebrow text-[var(--ts-accent)] shrink-0">
+          <span className="ts-pill-solid !py-1 !px-3 !text-[0.5625rem]">
             ملاحظة
           </span>
-          <span className="text-sm text-[var(--ts-text-secondary)] leading-relaxed">
+          <span className="text-sm text-[var(--ts-text-primary)] leading-relaxed">
             ترتيب التنفيذ التفصيلي والمدة والتكلفة تعتمد على النطاق النهائي
             والبيانات والتكاملات والأجهزة والاعتمادات.
           </span>
