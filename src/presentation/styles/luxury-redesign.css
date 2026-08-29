@@ -1,0 +1,115 @@
+/* TAJ SABA — DIGITAL LUXURY PRESENTATION OVERRIDES */
+:root {
+  --ts-bg: #080A0D;
+  --ts-bg-soft: #0D1116;
+  --ts-bg-warm: #12100D;
+  --ts-surface: rgba(255,255,255,.045);
+  --ts-surface-elevated: rgba(255,255,255,.065);
+  --ts-surface-raised: rgba(255,255,255,.08);
+  --ts-surface-tint: rgba(201,168,106,.055);
+  --ts-surface-sunk: rgba(0,0,0,.24);
+  --ts-text-primary: #F5F1E8;
+  --ts-text-secondary: #B4B0A7;
+  --ts-text-muted: #898A8C;
+  --ts-text-faint: #62666B;
+  --ts-text-whisper: #383D43;
+  --ts-text-inverse: #090B0E;
+  --ts-accent: #C9A86A;
+  --ts-accent-bright: #E1C995;
+  --ts-accent-deep: #8D6D37;
+  --ts-accent-soft: rgba(201,168,106,.12);
+  --ts-accent-softer: rgba(201,168,106,.055);
+  --ts-accent-tint: rgba(201,168,106,.075);
+  --ts-accent-richer: #B99350;
+  --ts-warm: #A77C43;
+  --ts-warm-bright: #C59A5A;
+  --ts-warm-soft: rgba(197,154,90,.11);
+  --ts-border: rgba(245,241,232,.105);
+  --ts-border-strong: rgba(245,241,232,.18);
+  --ts-border-faint: rgba(245,241,232,.055);
+  --ts-border-accent: rgba(201,168,106,.34);
+  --ts-border-accent-strong: rgba(201,168,106,.58);
+  --ts-shadow-soft: 0 1px 2px rgba(0,0,0,.28),0 12px 35px rgba(0,0,0,.12);
+  --ts-shadow-card: 0 1px 0 rgba(255,255,255,.035),0 16px 42px rgba(0,0,0,.18);
+  --ts-shadow-elevated: 0 1px 0 rgba(255,255,255,.045),0 22px 70px rgba(0,0,0,.32);
+  --ts-shadow-float: 0 24px 90px rgba(0,0,0,.42);
+}
+
+html, body { background:#080A0D !important; color:#F5F1E8 !important; }
+body { background:#080A0D !important; }
+.presentation-root {
+  background:
+    radial-gradient(ellipse 72% 64% at 78% 12%, rgba(201,168,106,.075), transparent 62%),
+    radial-gradient(ellipse 55% 60% at 8% 88%, rgba(96,73,37,.055), transparent 65%),
+    linear-gradient(135deg,#080A0D 0%,#0B0F13 52%,#080A0D 100%) !important;
+}
+
+/* Stage: cinematic canvas, not a SaaS dashboard */
+.slide-stage, .slide-pad { position:relative; background:transparent !important; }
+.slide-stage::before {
+  content:""; position:absolute; inset:0; pointer-events:none; opacity:.24;
+  background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
+  background-size:72px 72px;
+  mask-image:radial-gradient(ellipse at center,black 0%,transparent 72%);
+}
+.slide-stage::after {
+  content:""; position:absolute; inset:6.5vh 6vw; border:1px solid rgba(201,168,106,.07); pointer-events:none; border-radius:2px;
+}
+
+/* Typography: editorial luxury */
+.ts-display { font-weight:600 !important; letter-spacing:-.045em !important; }
+.ts-h1,.ts-h2 { font-weight:600 !important; letter-spacing:-.035em !important; }
+.ts-h3 { font-weight:600 !important; }
+.ts-body-lg { color:var(--ts-text-secondary) !important; }
+.ts-eyebrow, .ts-eyebrow-label, .ts-eyebrow-dot { color:var(--ts-accent) !important; letter-spacing:.18em !important; }
+.ts-slide-index { color:var(--ts-accent) !important; }
+
+/* Replace bright SaaS gradients with champagne metal */
+.ts-gradient-text, .ts-gradient-text-emerald, .ts-gradient-text-warm, .ts-gradient-text-mesh, .ts-gradient-animated {
+  background:linear-gradient(110deg,#F5F1E8 0%,#E1C995 42%,#B99350 100%) !important;
+  -webkit-background-clip:text !important; background-clip:text !important; color:transparent !important;
+}
+
+/* Premium surfaces */
+.ts-card, .ts-surface, [class*="ts-card"] {
+  background:linear-gradient(145deg,rgba(255,255,255,.065),rgba(255,255,255,.025)) !important;
+  border-color:rgba(245,241,232,.10) !important;
+  box-shadow:var(--ts-shadow-card) !important;
+  backdrop-filter:blur(18px);
+}
+.ts-card:hover, [class*="ts-card"]:hover { border-color:rgba(201,168,106,.28) !important; }
+.ts-pill, [class*="ts-pill"] {
+  background:rgba(201,168,106,.07) !important; color:#D8C49B !important;
+  border-color:rgba(201,168,106,.20) !important; box-shadow:none !important;
+}
+.ts-icon-chip, [class*="ts-icon-chip"] { background:rgba(201,168,106,.08) !important; color:#D9C18D !important; border-color:rgba(201,168,106,.20) !important; }
+
+/* Hairline rules and decorative marks */
+.bg-gradient-to-l, .bg-gradient-to-r { background-image:linear-gradient(to left,transparent,#C9A86A) !important; }
+
+/* Kill common light-theme remnants */
+.text-black, .text-zinc-900, .text-gray-900 { color:#F5F1E8 !important; }
+.text-zinc-500,.text-zinc-600,.text-gray-500,.text-gray-600 { color:#898A8C !important; }
+.bg-white,.bg-zinc-50,.bg-zinc-100,.bg-gray-50 { background:rgba(255,255,255,.04) !important; }
+
+/* Presentation navigation should disappear into the stage */
+.presentation-navigation, .presentation-nav { background:rgba(8,10,13,.78) !important; border-color:rgba(245,241,232,.09) !important; backdrop-filter:blur(18px); }
+
+/* Section divider / statement slides */
+.ts-statement, .statement-slide { max-width:1200px; }
+
+/* Cinematic image treatment when slides use media */
+img { border-radius:2px; }
+[class*="image"] img { filter:saturate(.82) contrast(1.04); }
+
+/* Motion: slower, quieter, more expensive */
+.ts-card, [class*="ts-card"], .ts-pill { transition:transform 650ms cubic-bezier(.16,1,.3,1),border-color 500ms ease,box-shadow 650ms ease !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  *,*::before,*::after { animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; scroll-behavior:auto !important; }
+}
+
+@media (max-width:900px) {
+  .slide-stage::after { inset:3vh 3vw; }
+  .slide-stage::before { background-size:48px 48px; }
+}
