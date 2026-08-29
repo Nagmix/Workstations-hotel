@@ -6,7 +6,10 @@ import {
   BIG_PICTURE_BEFORE,
 } from "../../data/slides";
 import {
-  SlideHeader,
+  ConnectorArrow,
+  SectionHeading,
+  StatBlock,
+  StatusPill,
   blurIn,
   containerStagger,
   drawLine,
@@ -28,9 +31,14 @@ const CHAOS_OFFSETS = [
 ];
 
 /**
- * Slide 04 — The Big Picture
- * Visual contrast: chaotic "before" chips on the right (RTL start) →
- * emerald transformation arrow → clean ordered "after" pillars on the left.
+ * Slide 04 — The Big Picture (ENHANCED MODERN LIGHT)
+ * 3-col layout: Before · Arrow · After
+ *  - Before: ts-card-raised with ts-dot-bg texture, ts-pill-danger counter,
+ *    scattered chips with rotations, ts-pill-dot danger callouts
+ *  - Arrow: animated SVG with drawLine + ts-arrow-connector chip + ts-eyebrow-dot
+ *  - After: ts-card-deep (deep emerald gradient) with ts-corner-ornament,
+ *    ts-dot-bg overlay, 3 ts-glass pillar cards inside, ts-floating-badge
+ *  - Bottom: ts-stat-strip showing 9 → 1 reduction
  */
 export default function Slide04BigPicture() {
   return (
@@ -43,42 +51,49 @@ export default function Slide04BigPicture() {
       aria-roledescription="slide"
       aria-label="The Big Picture"
     >
+      {/* Subtle aurora background */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 ts-aurora-bg opacity-60"
+      />
+
       <div className="relative z-10 flex flex-col gap-6 w-full max-w-7xl mx-auto">
         {/* Header */}
-        <div className="flex flex-col gap-3">
-          <SlideHeader
-            index="04"
-            eyebrow="الصورة الكبرى"
-            eyebrowEn="The Big Picture"
-          />
-          <motion.h2
-            variants={fadeUp}
-            className="ts-h2 text-[var(--ts-text-primary)] font-medium mt-2 max-w-3xl"
-          >
-            من إجراءات متفرقة إلى منظومة موحدة، مترابطة، قابلة للقياس.
-          </motion.h2>
-        </div>
+        <SectionHeading
+          eyebrow="الصورة الكبرى"
+          eyebrowEn="The Big Picture"
+          title={
+            <>
+              من إجراءات متفرقة إلى{" "}
+              <span className="ts-gradient-text-emerald">منظومة موحدة</span>،
+              مترابطة، قابلة للقياس.
+            </>
+          }
+        />
 
         {/* Diagram: before → arrow → after */}
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto_1.15fr] gap-6 lg:gap-8 items-stretch mt-2">
-          {/* BEFORE — scattered systems (right side in RTL) */}
+          {/* BEFORE — chaotic scattered systems */}
           <motion.div
             variants={blurIn}
-            className="ts-card-raised p-6 lg:p-7 relative overflow-hidden"
+            className="ts-card-raised p-6 lg:p-7 relative overflow-hidden ts-noise"
           >
             {/* Dot-grid texture behind the chaos */}
-            <div className="pointer-events-none absolute inset-0 ts-dot-bg opacity-60" />
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-0 ts-dot-bg opacity-60"
+            />
 
             <div className="relative flex items-center justify-between mb-5">
-              <span className="ts-eyebrow text-[var(--ts-text-muted)]">
+              <span className="ts-eyebrow-dot text-[var(--ts-text-muted)]">
                 <span className="lat">Before</span>
-                <span className="mx-2 text-[var(--ts-text-faint)]">·</span>
-                واقع اليوم
+                <span className="mx-1 text-[var(--ts-text-faint)]">·</span>
+                <span>واقع اليوم</span>
               </span>
-              <span className="ts-pill-neutral !py-1 !px-2.5">
+              <StatusPill variant="danger">
                 <span className="lat">{BIG_PICTURE_BEFORE.length}</span>
                 <span>أنظمة</span>
-              </span>
+              </StatusPill>
             </div>
 
             {/* Chaotic scattered chips */}
@@ -93,7 +108,7 @@ export default function Slide04BigPicture() {
                     style={{
                       transform: `rotate(${o.rot}deg) translateY(${o.y}px)`,
                     }}
-                    className="px-3 py-2 rounded-md border border-[var(--ts-border-strong)] bg-[var(--ts-surface)] text-[var(--ts-text-muted)] text-sm select-none"
+                    className="px-3 py-2 rounded-md border border-[var(--ts-border-strong)] bg-[var(--ts-surface)] text-[var(--ts-text-muted)] text-sm select-none ts-hover-lift"
                   >
                     {label}
                   </motion.span>
@@ -102,10 +117,9 @@ export default function Slide04BigPicture() {
             </div>
 
             <div className="relative mt-5 pt-4 border-t border-[var(--ts-border)] flex items-start gap-2.5">
-              <span
-                aria-hidden
-                className="mt-1.5 h-1.5 w-1.5 rounded-full bg-[var(--ts-warm)] shrink-0"
-              />
+              <StatusPill variant="dot" className="danger">
+                <span>Fragmented</span>
+              </StatusPill>
               <p className="text-xs text-[var(--ts-text-secondary)] leading-relaxed">
                 أنظمة منفصلة، إدخال يدوي مكرر، تقارير متأخرة، رؤية جزئية
                 للأداء.
@@ -119,8 +133,8 @@ export default function Slide04BigPicture() {
             className="flex flex-col items-center justify-center gap-3 px-2 py-4"
             dir="rtl"
           >
-            <span className="ts-eyebrow text-[var(--ts-accent)] hidden lg:flex">
-              TRANSFORM
+            <span className="ts-eyebrow-dot hidden lg:flex">
+              <span className="lat">TRANSFORM</span>
             </span>
             {/* Animated arrow (desktop) */}
             <svg
@@ -129,7 +143,7 @@ export default function Slide04BigPicture() {
               viewBox="0 0 140 48"
               fill="none"
               className="hidden lg:block"
-              aria-hidden
+              aria-hidden="true"
             >
               <motion.line
                 x1="130"
@@ -185,7 +199,7 @@ export default function Slide04BigPicture() {
                 height="140"
                 viewBox="0 0 48 140"
                 fill="none"
-                aria-hidden
+                aria-hidden="true"
               >
                 <motion.line
                   x1="24"
@@ -210,18 +224,21 @@ export default function Slide04BigPicture() {
                 />
               </svg>
             </div>
+            {/* ts-arrow-connector chip */}
+            <ConnectorArrow className="hidden lg:flex" size={20} />
             <span className="ts-eyebrow text-[var(--ts-text-faint)] hidden lg:flex">
               توحيد · ربط · قياس
             </span>
           </motion.div>
 
-          {/* AFTER — unified platform (left side in RTL) */}
+          {/* AFTER — unified deep-emerald platform with glass pillars */}
           <motion.div
             variants={blurIn}
-            className="ts-card-inverse p-6 lg:p-7 relative overflow-hidden"
+            className="ts-card-deep ts-corner-ornament p-6 lg:p-7 relative overflow-hidden"
           >
-            {/* Subtle dot pattern on dark surface */}
+            {/* White dot pattern on dark surface */}
             <div
+              aria-hidden="true"
               className="pointer-events-none absolute inset-0 opacity-30"
               style={{
                 backgroundImage:
@@ -230,13 +247,18 @@ export default function Slide04BigPicture() {
               }}
             />
 
-            <div className="relative flex items-center justify-between mb-5">
-              <span className="ts-eyebrow text-white/85">
+            {/* Floating "Today" badge above the card top edge */}
+            <span className="ts-floating-badge lat" dir="ltr">
+              Today · اليوم
+            </span>
+
+            <div className="relative flex items-center justify-between mb-5 mt-2">
+              <span className="ts-eyebrow-dot text-white">
                 <span className="lat">After</span>
-                <span className="mx-2 text-white/50">·</span>
-                منصة موحدة
+                <span className="mx-1 text-white/50">·</span>
+                <span>منصة موحدة</span>
               </span>
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/15 border border-white/20 text-white text-[0.6875rem] tracking-[0.18em] uppercase font-semibold">
+              <span className="ts-glass inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-white text-[0.6875rem] tracking-[0.18em] uppercase font-semibold">
                 <span className="lat">{BIG_PICTURE_AFTER.length}</span>
                 <span>محاور</span>
               </span>
@@ -256,17 +278,17 @@ export default function Slide04BigPicture() {
               <span className="h-px w-8 bg-white/30" />
             </div>
 
-            {/* 3 clean pillars */}
+            {/* 3 clean glass pillar cards */}
             <div className="relative grid grid-cols-3 gap-3">
               {BIG_PICTURE_AFTER.map((p, i) => (
                 <motion.div
                   key={p.label}
                   custom={i + 2}
                   variants={scaleIn}
-                  className="relative flex flex-col items-center text-center p-4 rounded-xl bg-white/[0.07] border border-white/15 backdrop-blur-sm"
+                  className="ts-glass relative flex flex-col items-center text-center p-4 rounded-xl"
                 >
                   <span
-                    aria-hidden
+                    aria-hidden="true"
                     className="absolute top-2 right-2 text-[0.625rem] text-white/40 lat"
                   >
                     {String(i + 1).padStart(2, "0")}
@@ -280,10 +302,9 @@ export default function Slide04BigPicture() {
             </div>
 
             <div className="relative mt-5 pt-4 border-t border-white/15 flex items-start gap-2.5">
-              <span
-                aria-hidden
-                className="mt-1.5 h-1.5 w-1.5 rounded-full bg-white/80 shrink-0"
-              />
+              <StatusPill variant="dot" className="success">
+                <span>Unified</span>
+              </StatusPill>
               <p className="text-xs text-white/80 leading-relaxed">
                 منظومة واحدة تربط الإقامة والمطعم والمخزون والمالية
                 والموارد البشرية وتجربة النزيل.
@@ -291,6 +312,41 @@ export default function Slide04BigPicture() {
             </div>
           </motion.div>
         </div>
+
+        {/* Bottom strip: "9 → 1" reduction KPI strip */}
+        <motion.div
+          variants={fadeUp}
+          className="ts-stat-strip !grid-cols-4 mt-2"
+        >
+          <StatBlock
+            value="9"
+            label="أنظمة منفصلة"
+            labelEn="Before"
+            trend="PRE"
+            trendVariant="danger"
+          />
+          <StatBlock
+            value="→"
+            label="توحيد وربط"
+            labelEn="Transform"
+            trend="FLOW"
+            trendVariant="warning"
+          />
+          <StatBlock
+            value="1"
+            label="منصة موحدة"
+            labelEn="After"
+            trend="POST"
+            trendVariant="success"
+          />
+          <StatBlock
+            value="3"
+            label="محاور تشغيلية"
+            labelEn="Pillars"
+            trend="SCOPE"
+            trendVariant="info"
+          />
+        </motion.div>
       </div>
     </motion.section>
   );

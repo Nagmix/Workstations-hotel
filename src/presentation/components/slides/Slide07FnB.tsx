@@ -2,51 +2,81 @@
 
 import { Fragment } from "react";
 import { motion } from "framer-motion";
-import { FNB_FLOW } from "../../data/slides";
+import { FNB_FLOW, PRESENTATION_META } from "../../data/slides";
 import {
-  SlideHeader,
+  ConnectorArrow,
+  SectionHeading,
+  SlideBrandChip,
+  StatusPill,
+  Watermark,
   containerStagger,
   drawLine,
   fadeUp,
   scaleIn,
 } from "../primitives";
 
+/**
+ * Slide 07 — Food & Beverage (ENHANCED MODERN LIGHT)
+ *
+ * Pipeline panel:
+ *  - ts-card-mesh outer panel with ts-grid-bg background + ts-aurora-bg overlay
+ *    + right-edge ts-blob-emerald halo
+ *  - ts-corner-ornament luxury corner brackets on the outer panel
+ *  - 6 step cards (flex-1, ts-bento ts-bento-accent)
+ *  - Each step number rendered inside ts-icon-chip-gradient (filled emerald
+ *    gradient 44x44 chip)
+ *  - Watermark of the step number "01"-"06" large and faint in card background
+ *  - Two separate arrow connectors:
+ *      HorizontalArrow (lg+ only, points left for RTL flow) using
+ *        ts-arrow-connector chip + dashed motion.line + chevron motion.path
+ *        with drawLine variants
+ *      VerticalArrow (mobile only)
+ *  - Each card: step number chip on the right (RTL), en label on the left,
+ *    Arabic title (ts-h3), description (mt-auto)
+ *  - Bottom narrative: 3 ts-bento panels each with ts-eyebrow-dot +
+ *    small description
+ *  - Header: SectionHeading with ts-pill-dot "6 steps" counter
+ *  - SlideBrandChip top-right
+ */
+
 /* Horizontal arrow connector (used on lg+ when pipeline is horizontal) */
 function HorizontalArrow({ index }: { index: number }) {
   return (
     <div
       className="hidden lg:flex items-center justify-center px-1 shrink-0"
-      aria-hidden
+      aria-hidden="true"
     >
-      <svg
-        width="34"
-        height="14"
-        viewBox="0 0 34 14"
-        className="text-[var(--ts-accent)]"
-        fill="none"
-      >
-        <motion.line
-          x1="32"
-          y1="7"
-          x2="8"
-          y2="7"
-          stroke="currentColor"
-          strokeWidth="1.4"
-          strokeDasharray="3 3"
-          variants={drawLine}
-          custom={index}
-        />
-        <motion.path
-          d="M 12 2 L 4 7 L 12 12"
-          stroke="currentColor"
-          strokeWidth="1.4"
+      <span className="ts-arrow-connector">
+        <svg
+          width="22"
+          height="14"
+          viewBox="0 0 34 14"
           fill="none"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          variants={drawLine}
-          custom={index + 0.5}
-        />
-      </svg>
+          aria-hidden="true"
+        >
+          <motion.line
+            x1="32"
+            y1="7"
+            x2="8"
+            y2="7"
+            stroke="currentColor"
+            strokeWidth="1.4"
+            strokeDasharray="3 3"
+            variants={drawLine}
+            custom={index}
+          />
+          <motion.path
+            d="M 12 2 L 4 7 L 12 12"
+            stroke="currentColor"
+            strokeWidth="1.4"
+            fill="none"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            variants={drawLine}
+            custom={index + 0.5}
+          />
+        </svg>
+      </span>
     </div>
   );
 }
@@ -56,40 +86,57 @@ function VerticalArrow({ index }: { index: number }) {
   return (
     <div
       className="flex lg:hidden items-center justify-center py-1 shrink-0"
-      aria-hidden
+      aria-hidden="true"
     >
-      <svg
-        width="14"
-        height="34"
-        viewBox="0 0 14 34"
-        className="text-[var(--ts-accent)]"
-        fill="none"
-      >
-        <motion.line
-          x1="7"
-          y1="2"
-          x2="7"
-          y2="26"
-          stroke="currentColor"
-          strokeWidth="1.4"
-          strokeDasharray="3 3"
-          variants={drawLine}
-          custom={index}
-        />
-        <motion.path
-          d="M 2 22 L 7 30 L 12 22"
-          stroke="currentColor"
-          strokeWidth="1.4"
+      <span className="ts-arrow-connector">
+        <svg
+          width="14"
+          height="22"
+          viewBox="0 0 14 34"
           fill="none"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          variants={drawLine}
-          custom={index + 0.5}
-        />
-      </svg>
+          aria-hidden="true"
+        >
+          <motion.line
+            x1="7"
+            y1="2"
+            x2="7"
+            y2="26"
+            stroke="currentColor"
+            strokeWidth="1.4"
+            strokeDasharray="3 3"
+            variants={drawLine}
+            custom={index}
+          />
+          <motion.path
+            d="M 2 22 L 7 30 L 12 22"
+            stroke="currentColor"
+            strokeWidth="1.4"
+            fill="none"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            variants={drawLine}
+            custom={index + 0.5}
+          />
+        </svg>
+      </span>
     </div>
   );
 }
+
+const NARRATIVE = [
+  {
+    k: "إرسال تلقائي",
+    v: "POS يغذي المطبخ مباشرة عبر Kitchen Display.",
+  },
+  {
+    k: "ربط بالوصفة",
+    v: "كل بيع يستدعي استهلاكًا محسوبًا للمواد الخام.",
+  },
+  {
+    k: "أثر مالي",
+    v: "التكلفة والهامش والإيراد يدخلان دورة المالية.",
+  },
+];
 
 export default function Slide07FnB() {
   return (
@@ -98,124 +145,150 @@ export default function Slide07FnB() {
       animate="show"
       exit="hidden"
       variants={containerStagger}
-      className="slide-stage slide-pad"
+      className="slide-stage slide-pad relative overflow-hidden ts-noise"
       aria-roledescription="slide"
       aria-label="Food and Beverage"
     >
-      <div className="w-full max-w-7xl mx-auto flex flex-col gap-7">
-        {/* Header */}
-        <div className="flex flex-col gap-3">
-          <SlideHeader
-            index="07"
-            eyebrow="المطاعم والضيافة"
-            eyebrowEn="Food & Beverage"
-          />
-          <div className="flex items-end justify-between flex-wrap gap-3">
-            <motion.h2
-              variants={fadeUp}
-              className="ts-h2 text-[var(--ts-text-primary)] font-semibold max-w-2xl leading-tight"
-            >
-              ليس نظام كاشير منفصل، بل دورة تشغيل متكاملة.
-            </motion.h2>
-            <motion.span variants={fadeUp} className="ts-pill" dir="ltr">
-              <span className="lat">POS</span>
-              <span className="text-[var(--ts-text-faint)]">·</span>
-              <span>Kitchen</span>
-              <span className="text-[var(--ts-text-faint)]">·</span>
-              <span>Food Cost</span>
-            </motion.span>
-          </div>
-        </div>
+      {/* Ambient layer: aurora + right-edge emerald halo blob */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 ts-aurora-bg opacity-60"
+      />
+      <div
+        aria-hidden="true"
+        className="ts-blob ts-blob-emerald"
+        style={{
+          top: "20%",
+          right: -120,
+          width: 360,
+          height: 360,
+          opacity: 0.45,
+        }}
+      />
 
-        {/* Pipeline panel with grid background */}
+      {/* Brand lockup */}
+      <SlideBrandChip
+        brand={PRESENTATION_META.brand}
+        date={PRESENTATION_META.date}
+      />
+
+      <div className="relative z-10 w-full max-w-7xl mx-auto flex flex-col gap-7">
+        {/* Section heading with pill counter */}
+        <SectionHeading
+          eyebrow="المطاعم والضيافة"
+          eyebrowEn="Food & Beverage"
+          title={
+            <>
+              ليس نظام كاشير منفصل، بل{" "}
+              <span className="ts-gradient-text-emerald">
+                دورة تشغيل متكاملة
+              </span>
+              .
+            </>
+          }
+          subtitle="POS · Kitchen · Recipe · Food Cost · Inventory — كل خطوة تغذي التالية مباشرة."
+          pill={
+            <StatusPill variant="dot">
+              <span className="lat">{FNB_FLOW.length}</span>
+              <span>خطوات</span>
+            </StatusPill>
+          }
+        />
+
+        {/* Pipeline panel — mesh card with grid + aurora + corner ornaments */}
         <motion.div
           variants={fadeUp}
-          className="relative rounded-2xl border border-[var(--ts-border)] bg-[var(--ts-bg-soft)] ts-grid-bg overflow-hidden"
+          className="ts-card-mesh ts-corner-ornament relative p-4 lg:p-6"
         >
-          {/* subtle emerald halo on the right edge */}
+          {/* Inner grid background layer */}
           <div
-            className="absolute inset-y-0 right-0 w-1/2 pointer-events-none"
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 ts-grid-bg opacity-60 rounded-[var(--radius-lg)]"
+          />
+          {/* Right-edge emerald halo (already on outer slide; add inner halo) */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-y-0 right-0 w-1/2 rounded-r-[var(--radius-lg)]"
             style={{
               background:
-                "linear-gradient(270deg, rgba(15,118,110,0.05), transparent 70%)",
+                "linear-gradient(270deg, rgba(15,118,110,0.07), transparent 70%)",
             }}
-            aria-hidden
           />
-          <div className="relative p-4 lg:p-6">
-            <div className="flex flex-col lg:flex-row items-stretch gap-3">
-              {FNB_FLOW.map((node, i) => (
-                <Fragment key={node.step}>
-                  <motion.div
-                    custom={i}
-                    variants={scaleIn}
-                    className="flex-1 ts-card p-4 lg:p-5 flex flex-col gap-3 relative min-w-0"
-                  >
-                    <div className="flex items-center justify-between gap-2">
-                      <div className="ts-icon-chip-solid" aria-hidden>
-                        <span
-                          className="lat text-sm font-semibold"
-                          dir="ltr"
-                        >
-                          {node.step}
-                        </span>
-                      </div>
+
+          <div className="relative flex flex-col lg:flex-row items-stretch gap-3">
+            {FNB_FLOW.map((node, i) => (
+              <Fragment key={node.step}>
+                <motion.article
+                  custom={i}
+                  variants={scaleIn}
+                  className="flex-1 ts-bento ts-bento-accent p-4 lg:p-5 flex flex-col gap-3 relative overflow-hidden min-w-0"
+                >
+                  {/* Faint step-number watermark in background */}
+                  <Watermark
+                    text={node.step}
+                    className="-bottom-3 -left-1 text-[5.5rem] opacity-[0.05]"
+                  />
+
+                  {/* Header row: en label on left, step chip on right (RTL) */}
+                  <div className="relative flex items-center justify-between gap-2">
+                    <span
+                      className="lat text-[10px] text-[var(--ts-text-faint)] tracking-wider"
+                      dir="ltr"
+                    >
+                      {node.en}
+                    </span>
+                    <span
+                      className="ts-icon-chip-gradient !w-11 !h-11"
+                      aria-hidden="true"
+                    >
                       <span
-                        className="lat text-[10px] text-[var(--ts-text-faint)] tracking-wider"
+                        className="lat text-sm font-bold"
                         dir="ltr"
                       >
-                        {node.en}
+                        {node.step}
                       </span>
-                    </div>
-                    <div className="ts-h3 text-[var(--ts-text-primary)] font-semibold leading-tight">
-                      {node.title}
-                    </div>
-                    <div className="text-xs text-[var(--ts-text-secondary)] leading-relaxed mt-auto">
-                      {node.desc}
-                    </div>
-                  </motion.div>
+                    </span>
+                  </div>
 
-                  {i < FNB_FLOW.length - 1 && (
-                    <>
-                      <HorizontalArrow index={i + 1} />
-                      <VerticalArrow index={i + 1} />
-                    </>
-                  )}
-                </Fragment>
-              ))}
-            </div>
+                  <div className="relative ts-h3 text-[var(--ts-text-primary)] font-semibold leading-tight">
+                    {node.title}
+                  </div>
+                  <div className="relative text-xs text-[var(--ts-text-secondary)] leading-relaxed mt-auto">
+                    {node.desc}
+                  </div>
+                </motion.article>
+
+                {i < FNB_FLOW.length - 1 && (
+                  <>
+                    <HorizontalArrow index={i + 1} />
+                    <VerticalArrow index={i + 1} />
+                  </>
+                )}
+              </Fragment>
+            ))}
           </div>
         </motion.div>
 
-        {/* Bottom narrative — three insights */}
+        {/* Bottom narrative — three insights as bento panels */}
         <motion.div
           variants={fadeUp}
           className="grid grid-cols-1 md:grid-cols-3 gap-3"
         >
-          {[
-            {
-              k: "إرسال تلقائي",
-              v: "POS يغذي المطبخ مباشرة عبر Kitchen Display.",
-            },
-            {
-              k: "ربط بالوصفة",
-              v: "كل بيع يستدعي استهلاكًا محسوبًا للمواد الخام.",
-            },
-            {
-              k: "أثر مالي",
-              v: "التكلفة والهامش والإيراد يدخلان دورة المالية.",
-            },
-          ].map((c) => (
-            <div
+          {NARRATIVE.map((c, i) => (
+            <motion.div
               key={c.k}
-              className="ts-card p-4 flex flex-col gap-1.5"
+              custom={i}
+              variants={fadeUp}
+              className="ts-bento ts-bento-accent p-4 flex flex-col gap-2"
             >
-              <div className="ts-eyebrow-label text-[var(--ts-accent)]">
-                {c.k}
+              <div className="flex items-center gap-2">
+                <span className="ts-eyebrow-dot">{c.k}</span>
+                <ConnectorArrow size={14} className="!w-6 !h-6 ml-auto" />
               </div>
               <div className="text-sm text-[var(--ts-text-secondary)] leading-relaxed">
                 {c.v}
               </div>
-            </div>
+            </motion.div>
           ))}
         </motion.div>
       </div>

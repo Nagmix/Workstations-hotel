@@ -1,0 +1,1421 @@
+     1→@import "tailwindcss";
+     2→@import "tw-animate-css";
+     3→
+     4→@custom-variant dark (&:is(.dark *));
+     5→
+     6→/* ============================================================
+     7→   TAJ SABA SMART HOTEL PLATFORM — MODERN LIGHT DESIGN SYSTEM
+     8→   "Linen & Emerald" — Modern Hospitality × Executive SaaS
+     9→   Light · Warm · Premium · Contemporary (2025)
+    10→   ============================================================ */
+    11→
+    12→@theme inline {
+    13→  --color-background: var(--ts-bg);
+    14→  --color-foreground: var(--ts-text-primary);
+    15→
+    16→  --color-card: var(--ts-surface);
+    17→  --color-card-foreground: var(--ts-text-primary);
+    18→  --color-popover: var(--ts-surface-elevated);
+    19→  --color-popover-foreground: var(--ts-text-primary);
+    20→
+    21→  --color-primary: var(--ts-accent);
+    22→  --color-primary-foreground: #ffffff;
+    23→  --color-secondary: var(--ts-surface);
+    24→  --color-secondary-foreground: var(--ts-text-primary);
+    25→  --color-muted: var(--ts-surface-elevated);
+    26→  --color-muted-foreground: var(--ts-text-secondary);
+    27→  --color-accent: var(--ts-accent);
+    28→  --color-accent-foreground: #ffffff;
+    29→  --color-destructive: #c0473b;
+    30→  --color-border: var(--ts-border);
+    31→  --color-input: var(--ts-border-strong);
+    32→  --color-ring: var(--ts-accent);
+    33→
+    34→  --font-sans: var(--font-arabic), var(--font-inter), system-ui, sans-serif;
+    35→  --font-mono: var(--font-inter), ui-monospace, monospace;
+    36→
+    37→  --radius-sm: 8px;
+    38→  --radius-md: 12px;
+    39→  --radius-lg: 16px;
+    40→  --radius-xl: 22px;
+    41→  --radius-2xl: 28px;
+    42→}
+    43→
+    44→/* ---------- Design Tokens (Modern Light) ---------- */
+    45→:root {
+    46→  /* Surfaces — warm linen base, pure white cards */
+    47→  --ts-bg: #F6F4EF;
+    48→  --ts-bg-soft: #FAF8F4;
+    49→  --ts-bg-warm: #F2EFE8;
+    50→  --ts-surface: #FFFFFF;
+    51→  --ts-surface-elevated: #FCFBF8;
+    52→  --ts-surface-raised: #FFFFFF;
+    53→  --ts-surface-tint: #F4F1EA;
+    54→
+    55→  /* Text — rich near-black on warm gray scale */
+    56→  --ts-text-primary: #18181B;
+    57→  --ts-text-secondary: #52525B;
+    58→  --ts-text-muted: #71717A;
+    59→  --ts-text-faint: #A1A1AA;
+    60→  --ts-text-inverse: #FAFAF9;
+    61→
+    62→  /* Accent — deep emerald (modern, premium, hospitality) */
+    63→  --ts-accent: #0F766E;
+    64→  --ts-accent-bright: #0D9488;
+    65→  --ts-accent-deep: #134E4A;
+    66→  --ts-accent-soft: rgba(15, 118, 110, 0.08);
+    67→  --ts-accent-softer: rgba(15, 118, 110, 0.04);
+    68→  --ts-accent-tint: rgba(15, 118, 110, 0.06);
+    69→
+    70→  /* Secondary warm accent (amber, used sparingly) */
+    71→  --ts-warm: #B45309;
+    72→  --ts-warm-soft: rgba(180, 83, 9, 0.08);
+    73→
+    74→  /* Borders — subtle warm gray */
+    75→  --ts-border: rgba(24, 24, 27, 0.07);
+    76→  --ts-border-strong: rgba(24, 24, 27, 0.11);
+    77→  --ts-border-faint: rgba(24, 24, 27, 0.04);
+    78→  --ts-border-accent: rgba(15, 118, 110, 0.28);
+    79→
+    80→  /* Shadows — soft, layered, modern */
+    81→  --ts-shadow-soft: 0 1px 2px rgba(24, 24, 27, 0.04), 0 4px 16px rgba(24, 24, 27, 0.05);
+    82→  --ts-shadow-elevated: 0 1px 3px rgba(24, 24, 27, 0.05), 0 8px 28px rgba(24, 24, 27, 0.08);
+    83→  --ts-shadow-card: 0 1px 0 rgba(24, 24, 27, 0.03), 0 1px 3px rgba(24, 24, 27, 0.04), 0 6px 20px rgba(24, 24, 27, 0.05);
+    84→  --ts-shadow-accent: 0 8px 28px rgba(15, 118, 110, 0.18);
+    85→  --ts-shadow-accent-soft: 0 4px 18px rgba(15, 118, 110, 0.10);
+    86→
+    87→  /* Motion */
+    88→  --ts-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    89→  --ts-ease-soft: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    90→  --ts-dur-fast: 220ms;
+    91→  --ts-dur-base: 420ms;
+    92→  --ts-dur-slow: 700ms;
+    93→  --ts-dur-cinematic: 1100ms;
+    94→}
+    95→
+    96→/* ---------- Base ---------- */
+    97→* {
+    98→  border-color: var(--ts-border);
+    99→  outline-color: rgba(15, 118, 110, 0.5);
+   100→}
+   101→
+   102→html,
+   103→body {
+   104→  background: var(--ts-bg);
+   105→  color: var(--ts-text-primary);
+   106→  font-family: var(--font-arabic), var(--font-inter), system-ui, sans-serif;
+   107→  -webkit-font-smoothing: antialiased;
+   108→  -moz-osx-font-smoothing: grayscale;
+   109→  text-rendering: optimizeLegibility;
+   110→  font-feature-settings: "ss01", "kern";
+   111→}
+   112→
+   113→body {
+   114→  overscroll-behavior: none;
+   115→}
+   116→
+   117→/* English / numbers fall back to Inter for crisper glyphs */
+   118→.lat,
+   119→.num {
+   120→  font-family: var(--font-inter), system-ui, sans-serif;
+   121→  font-feature-settings: "tnum", "ss01";
+   122→}
+   123→
+   124→.num {
+   125→  font-variant-numeric: tabular-nums;
+   126→  letter-spacing: -0.01em;
+   127→}
+   128→
+   129→/* ---------- Typography Scale ---------- */
+   130→.ts-display {
+   131→  font-size: clamp(3rem, 7vw, 6.25rem);
+   132→  line-height: 1.02;
+   133→  letter-spacing: -0.025em;
+   134→  font-weight: 600;
+   135→}
+   136→.ts-h1 {
+   137→  font-size: clamp(2.25rem, 4.5vw, 4rem);
+   138→  line-height: 1.08;
+   139→  letter-spacing: -0.02em;
+   140→  font-weight: 600;
+   141→}
+   142→.ts-h2 {
+   143→  font-size: clamp(1.75rem, 3vw, 2.625rem);
+   144→  line-height: 1.15;
+   145→  letter-spacing: -0.015em;
+   146→  font-weight: 600;
+   147→}
+   148→.ts-h3 {
+   149→  font-size: clamp(1.25rem, 1.75vw, 1.5rem);
+   150→  line-height: 1.3;
+   151→  letter-spacing: -0.008em;
+   152→  font-weight: 600;
+   153→}
+   154→.ts-body-lg {
+   155→  font-size: clamp(1.0625rem, 1.25vw, 1.1875rem);
+   156→  line-height: 1.6;
+   157→  font-weight: 400;
+   158→}
+   159→.ts-body {
+   160→  font-size: 1rem;
+   161→  line-height: 1.65;
+   162→  font-weight: 400;
+   163→}
+   164→.ts-caption {
+   165→  font-size: 0.875rem;
+   166→  line-height: 1.5;
+   167→  font-weight: 400;
+   168→}
+   169→.ts-eyebrow {
+   170→  font-size: 0.6875rem;
+   171→  line-height: 1.4;
+   172→  font-weight: 500;
+   173→  letter-spacing: 0.22em;
+   174→  text-transform: uppercase;
+   175→}
+   176→
+   177→/* ---------- Presentation Root ---------- */
+   178→.presentation-root {
+   179→  min-height: 100vh;
+   180→  height: 100vh;
+   181→  width: 100vw;
+   182→  overflow: hidden;
+   183→  background:
+   184→    radial-gradient(
+   185→      ellipse 70% 50% at 50% -8%,
+   186→      rgba(15, 118, 110, 0.06),
+   187→      transparent 60%
+   188→    ),
+   189→    radial-gradient(
+   190→      ellipse 50% 35% at 100% 100%,
+   191→      rgba(180, 83, 9, 0.04),
+   192→      transparent 60%
+   193→    ),
+   194→    radial-gradient(
+   195→      ellipse 55% 40% at 0% 60%,
+   196→      rgba(15, 118, 110, 0.035),
+   197→      transparent 65%
+   198→    ),
+   199→    var(--ts-bg);
+   200→}
+   201→
+   202→/* Subtle ambient grain for warmth and depth */
+   203→.presentation-root::before {
+   204→  content: "";
+   205→  position: fixed;
+   206→  inset: 0;
+   207→  pointer-events: none;
+   208→  z-index: 0;
+   209→  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.09  0 0 0 0 0.09  0 0 0 0 0.11  0 0 0 0.025 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+   210→  opacity: 0.6;
+   211→  mix-blend-mode: multiply;
+   212→}
+   213→
+   214→/* ---------- Slide primitives ---------- */
+   215→.slide-stage {
+   216→  position: relative;
+   217→  width: 100%;
+   218→  height: 100%;
+   219→  display: flex;
+   220→  flex-direction: column;
+   221→  justify-content: center;
+   222→  z-index: 1;
+   223→}
+   224→
+   225→.slide-pad {
+   226→  padding: clamp(2rem, 5vw, 5rem);
+   227→}
+   228→
+   229→/* Modifier: top-align slides whose content fills the viewport */
+   230→.slide-stage.stage-top {
+   231→  justify-content: flex-start;
+   232→}
+   233→
+   234→/* ---------- Modern Card System ---------- */
+   235→
+   236→/* Standard surface card — pure white, soft shadow, hairline border */
+   237→.ts-card {
+   238→  background: var(--ts-surface);
+   239→  border: 1px solid var(--ts-border);
+   240→  border-radius: var(--radius-lg);
+   241→  box-shadow: var(--ts-shadow-card);
+   242→  transition: transform 0.35s var(--ts-ease-out), box-shadow 0.35s var(--ts-ease-out), border-color 0.35s var(--ts-ease-out);
+   243→}
+   244→
+   245→.ts-card:hover {
+   246→  transform: translateY(-3px);
+   247→  box-shadow: var(--ts-shadow-elevated);
+   248→  border-color: var(--ts-border-accent);
+   249→}
+   250→
+   251→/* Elevated card with stronger shadow for focal elements */
+   252→.ts-card-raised {
+   253→  background: var(--ts-surface);
+   254→  border: 1px solid var(--ts-border-strong);
+   255→  border-radius: var(--radius-lg);
+   256→  box-shadow: var(--ts-shadow-elevated);
+   257→}
+   258→
+   259→/* Accent card — emerald-tinted surface for emphasis */
+   260→.ts-card-accent {
+   261→  background: linear-gradient(180deg, rgba(15, 118, 110, 0.05), rgba(15, 118, 110, 0.015));
+   262→  border: 1px solid var(--ts-border-accent);
+   263→  border-radius: var(--radius-lg);
+   264→  box-shadow: var(--ts-shadow-accent-soft);
+   265→}
+   266→
+   267→/* Warm card — for highlight/CTA elements */
+   268→.ts-card-warm {
+   269→  background: linear-gradient(180deg, rgba(180, 83, 9, 0.06), rgba(180, 83, 9, 0.015));
+   270→  border: 1px solid rgba(180, 83, 9, 0.22);
+   271→  border-radius: var(--radius-lg);
+   272→}
+   273→
+   274→/* Dark card — for inverted/emphasis content (deep emerald) */
+   275→.ts-card-inverse {
+   276→  background: linear-gradient(165deg, #134E4A 0%, #0F766E 100%);
+   277→  border: 1px solid rgba(15, 118, 110, 0.4);
+   278→  border-radius: var(--radius-lg);
+   279→  color: var(--ts-text-inverse);
+   280→  box-shadow: 0 8px 32px rgba(15, 118, 110, 0.25);
+   281→}
+   282→
+   283→/* ---------- Pills & Badges ---------- */
+   284→
+   285→/* Accent pill — emerald outline on light tint */
+   286→.ts-pill {
+   287→  display: inline-flex;
+   288→  align-items: center;
+   289→  gap: 0.5rem;
+   290→  padding: 0.375rem 0.875rem;
+   291→  border-radius: 9999px;
+   292→  border: 1px solid var(--ts-border-accent);
+   293→  background: var(--ts-accent-tint);
+   294→  color: var(--ts-accent-deep);
+   295→  font-size: 0.6875rem;
+   296→  letter-spacing: 0.18em;
+   297→  text-transform: uppercase;
+   298→  font-weight: 600;
+   299→}
+   300→
+   301→/* Neutral pill — for secondary tags */
+   302→.ts-pill-neutral {
+   303→  display: inline-flex;
+   304→  align-items: center;
+   305→  gap: 0.5rem;
+   306→  padding: 0.375rem 0.875rem;
+   307→  border-radius: 9999px;
+   308→  border: 1px solid var(--ts-border-strong);
+   309→  background: var(--ts-surface);
+   310→  color: var(--ts-text-secondary);
+   311→  font-size: 0.6875rem;
+   312→  letter-spacing: 0.18em;
+   313→  text-transform: uppercase;
+   314→  font-weight: 500;
+   315→}
+   316→
+   317→/* Solid accent pill — filled emerald */
+   318→.ts-pill-solid {
+   319→  display: inline-flex;
+   320→  align-items: center;
+   321→  gap: 0.5rem;
+   322→  padding: 0.375rem 0.875rem;
+   323→  border-radius: 9999px;
+   324→  background: var(--ts-accent);
+   325→  color: #ffffff;
+   326→  font-size: 0.6875rem;
+   327→  letter-spacing: 0.18em;
+   328→  text-transform: uppercase;
+   329→  font-weight: 600;
+   330→  box-shadow: var(--ts-shadow-accent-soft);
+   331→}
+   332→
+   333→/* ---------- Section eyebrow ---------- */
+   334→.ts-eyebrow-label {
+   335→  display: inline-flex;
+   336→  align-items: center;
+   337→  gap: 0.625rem;
+   338→  color: var(--ts-accent);
+   339→  font-size: 0.6875rem;
+   340→  letter-spacing: 0.24em;
+   341→  text-transform: uppercase;
+   342→  font-weight: 600;
+   343→}
+   344→.ts-eyebrow-label::before {
+   345→  content: "";
+   346→  width: 28px;
+   347→  height: 1px;
+   348→  background: var(--ts-accent);
+   349→  opacity: 0.7;
+   350→}
+   351→
+   352→/* Slide index badge */
+   353→.ts-slide-index {
+   354→  font-family: var(--font-inter), sans-serif;
+   355→  font-variant-numeric: tabular-nums;
+   356→  letter-spacing: 0.04em;
+   357→}
+   358→
+   359→/* ---------- Decorative Backgrounds ---------- */
+   360→
+   361→/* Subtle dot grid (for diagram backgrounds) */
+   362→.ts-dot-bg {
+   363→  background-image: radial-gradient(circle, rgba(24, 24, 27, 0.06) 1px, transparent 1px);
+   364→  background-size: 24px 24px;
+   365→}
+   366→
+   367→/* Line grid (for structured diagrams) */
+   368→.ts-grid-bg {
+   369→  background-image: linear-gradient(
+   370→      to right,
+   371→      rgba(24, 24, 27, 0.035) 1px,
+   372→      transparent 1px
+   373→    ),
+   374→    linear-gradient(to bottom, rgba(24, 24, 27, 0.035) 1px, transparent 1px);
+   375→  background-size: 36px 36px;
+   376→}
+   377→
+   378→/* Soft gradient mesh blob (decorative) */
+   379→.ts-blob {
+   380→  position: absolute;
+   381→  border-radius: 9999px;
+   382→  filter: blur(80px);
+   383→  pointer-events: none;
+   384→  opacity: 0.5;
+   385→}
+   386→.ts-blob-emerald {
+   387→  background: radial-gradient(circle, rgba(15, 118, 110, 0.18), transparent 70%);
+   388→}
+   389→.ts-blob-warm {
+   390→  background: radial-gradient(circle, rgba(180, 83, 9, 0.12), transparent 70%);
+   391→}
+   392→
+   393→/* ---------- Connectors ---------- */
+   394→.ts-connector {
+   395→  background: linear-gradient(
+   396→    90deg,
+   397→    transparent,
+   398→    var(--ts-border-strong) 20%,
+   399→    var(--ts-border-strong) 80%,
+   400→    transparent
+   401→  );
+   402→}
+   403→
+   404→.ts-connector-accent {
+   405→  background: linear-gradient(
+   406→    90deg,
+   407→    transparent,
+   408→    rgba(15, 118, 110, 0.5) 20%,
+   409→    rgba(15, 118, 110, 0.5) 80%,
+   410→    transparent
+   411→  );
+   412→}
+   413→
+   414→/* ---------- Text Accents ---------- */
+   415→.ts-accent-text {
+   416→  color: var(--ts-accent);
+   417→}
+   418→.ts-accent-bright-text {
+   419→  color: var(--ts-accent-bright);
+   420→}
+   421→.ts-accent-deep-text {
+   422→  color: var(--ts-accent-deep);
+   423→}
+   424→
+   425→/* Gradient text (for hero headlines) */
+   426→.ts-gradient-text {
+   427→  background: linear-gradient(135deg, #18181B 0%, #0F766E 100%);
+   428→  -webkit-background-clip: text;
+   429→  background-clip: text;
+   430→  -webkit-text-fill-color: transparent;
+   431→  color: transparent;
+   432→}
+   433→
+   434→/* ---------- Icon container ---------- */
+   435→.ts-icon-chip {
+   436→  display: inline-flex;
+   437→  align-items: center;
+   438→  justify-content: center;
+   439→  width: 44px;
+   440→  height: 44px;
+   441→  border-radius: 12px;
+   442→  background: var(--ts-accent-tint);
+   443→  border: 1px solid var(--ts-border-accent);
+   444→  color: var(--ts-accent);
+   445→}
+   446→.ts-icon-chip-solid {
+   447→  display: inline-flex;
+   448→  align-items: center;
+   449→  justify-content: center;
+   450→  width: 44px;
+   451→  height: 44px;
+   452→  border-radius: 12px;
+   453→  background: var(--ts-accent);
+   454→  color: #ffffff;
+   455→  box-shadow: var(--ts-shadow-accent-soft);
+   456→}
+   457→
+   458→/* ---------- Scrollbars ---------- */
+   459→.ts-scroll::-webkit-scrollbar {
+   460→  width: 6px;
+   461→  height: 6px;
+   462→}
+   463→.ts-scroll::-webkit-scrollbar-track {
+   464→  background: transparent;
+   465→}
+   466→.ts-scroll::-webkit-scrollbar-thumb {
+   467→  background: var(--ts-border-strong);
+   468→  border-radius: 999px;
+   469→}
+   470→.ts-scroll::-webkit-scrollbar-thumb:hover {
+   471→  background: var(--ts-accent-soft);
+   472→}
+   473→
+   474→/* ---------- Animations ---------- */
+   475→@keyframes ts-fade-up {
+   476→  from {
+   477→    opacity: 0;
+   478→    transform: translateY(24px);
+   479→  }
+   480→  to {
+   481→    opacity: 1;
+   482→    transform: translateY(0);
+   483→  }
+   484→}
+   485→@keyframes ts-fade {
+   486→  from {
+   487→    opacity: 0;
+   488→  }
+   489→  to {
+   490→    opacity: 1;
+   491→  }
+   492→}
+   493→@keyframes ts-blur-in {
+   494→  from {
+   495→    opacity: 0;
+   496→    filter: blur(8px);
+   497→    transform: translateY(12px);
+   498→  }
+   499→  to {
+   500→    opacity: 1;
+   501→    filter: blur(0);
+   502→    transform: translateY(0);
+   503→  }
+   504→}
+   505→@keyframes ts-scale-in {
+   506→  from {
+   507→    opacity: 0;
+   508→    transform: scale(0.96);
+   509→  }
+   510→  to {
+   511→    opacity: 1;
+   512→    transform: scale(1);
+   513→  }
+   514→}
+   515→@keyframes ts-draw-line {
+   516→  from {
+   517→    stroke-dashoffset: var(--line-length, 200);
+   518→  }
+   519→  to {
+   520→    stroke-dashoffset: 0;
+   521→  }
+   522→}
+   523→@keyframes ts-shimmer {
+   524→  0% {
+   525→    background-position: 200% 0;
+   526→  }
+   527→  100% {
+   528→    background-position: -200% 0;
+   529→  }
+   530→}
+   531→@keyframes ts-pulse-soft {
+   532→  0%,
+   533→  100% {
+   534→    opacity: 0.6;
+   535→  }
+   536→  50% {
+   537→    opacity: 1;
+   538→  }
+   539→}
+   540→@keyframes ts-float {
+   541→  0%, 100% {
+   542→    transform: translateY(0);
+   543→  }
+   544→  50% {
+   545→    transform: translateY(-8px);
+   546→  }
+   547→}
+   548→@keyframes ts-glow {
+   549→  0%, 100% {
+   550→    box-shadow: 0 0 0 0 rgba(15, 118, 110, 0);
+   551→  }
+   552→  50% {
+   553→    box-shadow: 0 0 0 8px rgba(15, 118, 110, 0.08);
+   554→  }
+   555→}
+   556→
+   557→/* ---------- Reduced motion ---------- */
+   558→@media (prefers-reduced-motion: reduce) {
+   559→  *,
+   560→  *::before,
+   561→  *::after {
+   562→    animation-duration: 0.01ms !important;
+   563→    animation-iteration-count: 1 !important;
+   564→    transition-duration: 0.01ms !important;
+   565→  }
+   566→}
+   567→
+   568→/* ---------- Utility ---------- */
+   569→.ts-divider {
+   570→  height: 1px;
+   571→  background: linear-gradient(
+   572→    90deg,
+   573→    transparent,
+   574→    var(--ts-border-strong) 50%,
+   575→    transparent
+   576→  );
+   577→}
+   578→
+   579→.ts-divider-vertical {
+   580→  width: 1px;
+   581→  background: linear-gradient(
+   582→    180deg,
+   583→    transparent,
+   584→    var(--ts-border-strong) 50%,
+   585→    transparent
+   586→  );
+   587→}
+   588→
+   589→/* Accent divider */
+   590→.ts-divider-accent {
+   591→  height: 1px;
+   592→  background: linear-gradient(
+   593→    90deg,
+   594→    transparent,
+   595→    var(--ts-accent) 50%,
+   596→    transparent
+   597→  );
+   598→}
+   599→
+   600→/* Focus ring for accessibility */
+   601→:focus-visible {
+   602→  outline: 2px solid var(--ts-accent);
+   603→  outline-offset: 2px;
+   604→  border-radius: 4px;
+   605→}
+   606→
+   607→/* ============================================================
+   608→   ENHANCED MODERN COMPONENT LIBRARY (2025 patterns)
+   609→   Inspired by ui-ux-pro-max-skill reference repo
+   610→   Glass · Bento · Gradient Borders · Mesh · Status Pills · KPIs
+   611→   ============================================================ */
+   612→
+   613→/* ---------- Extended Color Tokens ---------- */
+   614→:root {
+   615→  /* Semantic status colors */
+   616→  --ts-success: #047857;
+   617→  --ts-success-bright: #10B981;
+   618→  --ts-success-soft: rgba(4, 120, 87, 0.08);
+   619→
+   620→  --ts-warning: #B45309;
+   621→  --ts-warning-bright: #F59E0B;
+   622→  --ts-warning-soft: rgba(180, 83, 9, 0.08);
+   623→
+   624→  --ts-danger: #BE123C;
+   625→  --ts-danger-bright: #F43F5E;
+   626→  --ts-danger-soft: rgba(190, 18, 60, 0.08);
+   627→
+   628→  --ts-info: #1D4ED8;
+   629→  --ts-info-bright: #3B82F6;
+   630→  --ts-info-soft: rgba(29, 78, 216, 0.08);
+   631→
+   632→  /* Premium accent variants */
+   633→  --ts-gold: #B45309;
+   634→  --ts-gold-bright: #D97706;
+   635→  --ts-gold-soft: rgba(217, 119, 6, 0.10);
+   636→
+   637→  /* Gradients */
+   638→  --ts-gradient-emerald: linear-gradient(135deg, #0F766E 0%, #134E4A 100%);
+   639→  --ts-gradient-emerald-bright: linear-gradient(135deg, #0D9488 0%, #0F766E 100%);
+   640→  --ts-gradient-warm: linear-gradient(135deg, #B45309 0%, #92400E 100%);
+   641→  --ts-gradient-mesh: linear-gradient(135deg, #0F766E 0%, #0D9488 50%, #134E4A 100%);
+   642→  --ts-gradient-hero: linear-gradient(135deg, #18181B 0%, #134E4A 70%, #0F766E 100%);
+   643→
+   644→  /* Premium shadows */
+   645→  --ts-shadow-glow-emerald: 0 0 30px rgba(15, 118, 110, 0.25), 0 0 60px rgba(15, 118, 110, 0.12);
+   646→  --ts-shadow-glow-warm: 0 0 30px rgba(180, 83, 9, 0.20);
+   647→  --ts-shadow-float: 0 20px 50px -10px rgba(24, 24, 27, 0.18), 0 8px 16px -4px rgba(24, 24, 27, 0.08);
+   648→  --ts-shadow-soft-float: 0 12px 32px -8px rgba(24, 24, 27, 0.12);
+   649→}
+   650→
+   651→/* ============================================================
+   652→   NEW CARD VARIANTS — Bento, Glass, Gradient Border
+   653→   ============================================================ */
+   654→
+   655→/* Bento card — Apple-style large tile with hover lift */
+   656→.ts-bento {
+   657→  background: var(--ts-surface);
+   658→  border: 1px solid var(--ts-border);
+   659→  border-radius: var(--radius-2xl);
+   660→  box-shadow: var(--ts-shadow-card);
+   661→  transition: transform 0.4s var(--ts-ease-out), box-shadow 0.4s var(--ts-ease-out), border-color 0.4s var(--ts-ease-out);
+   662→  position: relative;
+   663→  overflow: hidden;
+   664→}
+   665→.ts-bento:hover {
+   666→  transform: translateY(-4px);
+   667→  box-shadow: var(--ts-shadow-float);
+   668→  border-color: var(--ts-border-accent);
+   669→}
+   670→
+   671→/* Bento card with subtle top accent strip */
+   672→.ts-bento-accent::before {
+   673→  content: "";
+   674→  position: absolute;
+   675→  top: 0; left: 0; right: 0;
+   676→  height: 3px;
+   677→  background: var(--ts-gradient-emerald-bright);
+   678→  opacity: 0;
+   679→  transition: opacity 0.4s var(--ts-ease-out);
+   680→}
+   681→.ts-bento-accent:hover::before { opacity: 1; }
+   682→
+   683→/* Glass card — frosted glass effect for floating elements */
+   684→.ts-glass {
+   685→  background: rgba(255, 255, 255, 0.7);
+   686→  backdrop-filter: blur(16px);
+   687→  -webkit-backdrop-filter: blur(16px);
+   688→  border: 1px solid rgba(255, 255, 255, 0.5);
+   689→  box-shadow: var(--ts-shadow-soft-float);
+   690→}
+   691→
+   692→/* Glass card on emerald tint */
+   693→.ts-glass-emerald {
+   694→  background: rgba(15, 118, 110, 0.06);
+   695→  backdrop-filter: blur(14px);
+   696→  -webkit-backdrop-filter: blur(14px);
+   697→  border: 1px solid rgba(15, 118, 110, 0.18);
+   698→}
+   699→
+   700→/* Gradient border card — animated gradient frame */
+   701→.ts-card-gradient-border {
+   702→  position: relative;
+   703→  background: var(--ts-surface);
+   704→  border-radius: var(--radius-lg);
+   705→  padding: 1px;
+   706→  background: linear-gradient(135deg, var(--ts-accent) 0%, rgba(15, 118, 110, 0.2) 50%, var(--ts-accent-bright) 100%);
+   707→}
+   708→.ts-card-gradient-border > * {
+   709→  background: var(--ts-surface);
+   710→  border-radius: calc(var(--radius-lg) - 1px);
+   711→}
+   712→
+   713→/* Mesh card — has a faint mesh background inside */
+   714→.ts-card-mesh {
+   715→  background: var(--ts-surface);
+   716→  border: 1px solid var(--ts-border);
+   717→  border-radius: var(--radius-lg);
+   718→  position: relative;
+   719→  overflow: hidden;
+   720→}
+   721→.ts-card-mesh::before {
+   722→  content: "";
+   723→  position: absolute;
+   724→  inset: 0;
+   725→  background:
+   726→    radial-gradient(circle at 0% 0%, rgba(15, 118, 110, 0.05), transparent 50%),
+   727→    radial-gradient(circle at 100% 100%, rgba(180, 83, 9, 0.04), transparent 50%);
+   728→  pointer-events: none;
+   729→}
+   730→.ts-card-mesh > * { position: relative; z-index: 1; }
+   731→
+   732→/* Frosted overlay card */
+   733→.ts-card-frosted {
+   734→  background: rgba(255, 255, 255, 0.85);
+   735→  backdrop-filter: blur(20px);
+   736→  -webkit-backdrop-filter: blur(20px);
+   737→  border: 1px solid rgba(255, 255, 255, 0.6);
+   738→  border-radius: var(--radius-lg);
+   739→  box-shadow: var(--ts-shadow-elevated);
+   740→}
+   741→
+   742→/* Deep gradient card (premium emphasis) */
+   743→.ts-card-deep {
+   744→  background: var(--ts-gradient-emerald);
+   745→  border: 1px solid rgba(15, 118, 110, 0.4);
+   746→  border-radius: var(--radius-lg);
+   747→  color: var(--ts-text-inverse);
+   748→  box-shadow: 0 12px 36px -8px rgba(15, 118, 110, 0.4);
+   749→  position: relative;
+   750→  overflow: hidden;
+   751→}
+   752→.ts-card-deep::before {
+   753→  content: "";
+   754→  position: absolute;
+   755→  top: 0; left: 0; right: 0;
+   756→  height: 50%;
+   757→  background: radial-gradient(ellipse at top, rgba(255, 255, 255, 0.12), transparent 70%);
+   758→  pointer-events: none;
+   759→}
+   760→
+   761→/* ============================================================
+   762→   STATUS PILLS — semantic variant color system
+   763→   ============================================================ */
+   764→
+   765→.ts-pill-success {
+   766→  display: inline-flex;
+   767→  align-items: center;
+   768→  gap: 0.375rem;
+   769→  padding: 0.375rem 0.875rem;
+   770→  border-radius: 9999px;
+   771→  background: var(--ts-success-soft);
+   772→  border: 1px solid rgba(4, 120, 87, 0.22);
+   773→  color: var(--ts-success);
+   774→  font-size: 0.6875rem;
+   775→  letter-spacing: 0.16em;
+   776→  text-transform: uppercase;
+   777→  font-weight: 600;
+   778→}
+   779→
+   780→.ts-pill-warning {
+   781→  display: inline-flex;
+   782→  align-items: center;
+   783→  gap: 0.375rem;
+   784→  padding: 0.375rem 0.875rem;
+   785→  border-radius: 9999px;
+   786→  background: var(--ts-warning-soft);
+   787→  border: 1px solid rgba(180, 83, 9, 0.22);
+   788→  color: var(--ts-warning);
+   789→  font-size: 0.6875rem;
+   790→  letter-spacing: 0.16em;
+   791→  text-transform: uppercase;
+   792→  font-weight: 600;
+   793→}
+   794→
+   795→.ts-pill-danger {
+   796→  display: inline-flex;
+   797→  align-items: center;
+   798→  gap: 0.375rem;
+   799→  padding: 0.375rem 0.875rem;
+   800→  border-radius: 9999px;
+   801→  background: var(--ts-danger-soft);
+   802→  border: 1px solid rgba(190, 18, 60, 0.22);
+   803→  color: var(--ts-danger);
+   804→  font-size: 0.6875rem;
+   805→  letter-spacing: 0.16em;
+   806→  text-transform: uppercase;
+   807→  font-weight: 600;
+   808→}
+   809→
+   810→.ts-pill-info {
+   811→  display: inline-flex;
+   812→  align-items: center;
+   813→  gap: 0.375rem;
+   814→  padding: 0.375rem 0.875rem;
+   815→  border-radius: 9999px;
+   816→  background: var(--ts-info-soft);
+   817→  border: 1px solid rgba(29, 78, 216, 0.22);
+   818→  color: var(--ts-info);
+   819→  font-size: 0.6875rem;
+   820→  letter-spacing: 0.16em;
+   821→  text-transform: uppercase;
+   822→  font-weight: 600;
+   823→}
+   824→
+   825→/* Dot indicator pill (with leading dot) */
+   826→.ts-pill-dot {
+   827→  display: inline-flex;
+   828→  align-items: center;
+   829→  gap: 0.5rem;
+   830→  padding: 0.375rem 0.875rem;
+   831→  border-radius: 9999px;
+   832→  background: var(--ts-surface);
+   833→  border: 1px solid var(--ts-border-strong);
+   834→  color: var(--ts-text-secondary);
+   835→  font-size: 0.75rem;
+   836→  font-weight: 500;
+   837→}
+   838→.ts-pill-dot::before {
+   839→  content: "";
+   840→  width: 6px;
+   841→  height: 6px;
+   842→  border-radius: 9999px;
+   843→  background: var(--ts-accent);
+   844→}
+   845→.ts-pill-dot.success::before { background: var(--ts-success-bright); }
+   846→.ts-pill-dot.warning::before { background: var(--ts-warning-bright); }
+   847→.ts-pill-dot.danger::before { background: var(--ts-danger-bright); }
+   848→
+   849→/* Floating badge ("Most Popular" style, sits above a card) */
+   850→.ts-floating-badge {
+   851→  position: absolute;
+   852→  top: -0.75rem;
+   853→  left: 50%;
+   854→  transform: translateX(-50%);
+   855→  padding: 0.375rem 1rem;
+   856→  border-radius: 9999px;
+   857→  background: var(--ts-gradient-emerald);
+   858→  color: #ffffff;
+   859→  font-size: 0.6875rem;
+   860→  letter-spacing: 0.18em;
+   861→  text-transform: uppercase;
+   862→  font-weight: 600;
+   863→  box-shadow: 0 6px 18px rgba(15, 118, 110, 0.35);
+   864→  white-space: nowrap;
+   865→  z-index: 2;
+   866→}
+   867→
+   868→/* Ribbon badge (corner) */
+   869→.ts-ribbon {
+   870→  position: absolute;
+   871→  top: 1rem;
+   872→  right: 1rem;
+   873→  padding: 0.25rem 0.625rem;
+   874→  border-radius: 6px;
+   875→  background: var(--ts-gradient-emerald);
+   876→  color: #ffffff;
+   877→  font-size: 0.625rem;
+   878→  letter-spacing: 0.16em;
+   879→  text-transform: uppercase;
+   880→  font-weight: 600;
+   881→  box-shadow: 0 4px 12px rgba(15, 118, 110, 0.25);
+   882→  z-index: 2;
+   883→}
+   884→
+   885→/* ============================================================
+   886→   ENHANCED ICON CHIPS — gradient, glow, dual-tone
+   887→   ============================================================ */
+   888→
+   889→/* Icon chip with gradient fill */
+   890→.ts-icon-chip-gradient {
+   891→  display: inline-flex;
+   892→  align-items: center;
+   893→  justify-content: center;
+   894→  width: 44px;
+   895→  height: 44px;
+   896→  border-radius: 12px;
+   897→  background: var(--ts-gradient-emerald);
+   898→  color: #ffffff;
+   899→  box-shadow: 0 6px 18px rgba(15, 118, 110, 0.30);
+   900→}
+   901→
+   902→/* Icon chip with glow ring (animated pulse) */
+   903→.ts-icon-chip-glow {
+   904→  display: inline-flex;
+   905→  align-items: center;
+   906→  justify-content: center;
+   907→  width: 44px;
+   908→  height: 44px;
+   909→  border-radius: 12px;
+   910→  background: var(--ts-accent-tint);
+   911→  border: 1px solid var(--ts-border-accent);
+   912→  color: var(--ts-accent);
+   913→  position: relative;
+   914→}
+   915→.ts-icon-chip-glow::after {
+   916→  content: "";
+   917→  position: absolute;
+   918→  inset: -4px;
+   919→  border-radius: 16px;
+   920→  background: radial-gradient(circle, rgba(15, 118, 110, 0.18), transparent 70%);
+   921→  opacity: 0;
+   922→  transition: opacity 0.4s var(--ts-ease-out);
+   923→  pointer-events: none;
+   924→}
+   925→.ts-icon-chip-glow:hover::after { opacity: 1; }
+   926→
+   927→/* Large icon chip (for headers) */
+   928→.ts-icon-chip-lg {
+   929→  display: inline-flex;
+   930→  align-items: center;
+   931→  justify-content: center;
+   932→  width: 56px;
+   933→  height: 56px;
+   934→  border-radius: 14px;
+   935→  background: var(--ts-accent-tint);
+   936→  border: 1px solid var(--ts-border-accent);
+   937→  color: var(--ts-accent);
+   938→}
+   939→
+   940→/* Icon chip with status color variants */
+   941→.ts-icon-chip-success {
+   942→  background: var(--ts-success-soft);
+   943→  border: 1px solid rgba(4, 120, 87, 0.22);
+   944→  color: var(--ts-success);
+   945→}
+   946→.ts-icon-chip-warning {
+   947→  background: var(--ts-warning-soft);
+   948→  border: 1px solid rgba(180, 83, 9, 0.22);
+   949→  color: var(--ts-warning);
+   950→}
+   951→.ts-icon-chip-info {
+   952→  background: var(--ts-info-soft);
+   953→  border: 1px solid rgba(29, 78, 216, 0.22);
+   954→  color: var(--ts-info);
+   955→}
+   956→
+   957→/* ============================================================
+   958→   PREMIUM DECORATIVE — mesh, aurora, noise, hairlines
+   959→   ============================================================ */
+   960→
+   961→/* Mesh gradient background */
+   962→.ts-mesh-bg {
+   963→  background:
+   964→    radial-gradient(circle at 20% 30%, rgba(15, 118, 110, 0.06), transparent 50%),
+   965→    radial-gradient(circle at 80% 70%, rgba(180, 83, 9, 0.04), transparent 50%),
+   966→    radial-gradient(circle at 50% 50%, rgba(13, 148, 136, 0.03), transparent 60%);
+   967→}
+   968→
+   969→/* Aurora background (more saturated) */
+   970→.ts-aurora-bg {
+   971→  background:
+   972→    radial-gradient(ellipse at top, rgba(15, 118, 110, 0.08), transparent 50%),
+   973→    radial-gradient(ellipse at bottom right, rgba(180, 83, 9, 0.05), transparent 50%),
+   974→    radial-gradient(ellipse at bottom left, rgba(13, 148, 136, 0.05), transparent 50%);
+   975→}
+   976→
+   977→/* Mesh blob (bigger, more colorful) */
+   978→.ts-blob-mesh {
+   979→  background:
+   980→    radial-gradient(circle at 30% 30%, rgba(15, 118, 110, 0.20), transparent 50%),
+   981→    radial-gradient(circle at 70% 70%, rgba(13, 148, 136, 0.16), transparent 50%);
+   982→}
+   983→
+   984→/* Concentric ring decoration */
+   985→.ts-rings::before,
+   986→.ts-rings::after {
+   987→  content: "";
+   988→  position: absolute;
+   989→  border-radius: 9999px;
+   990→  border: 1px dashed var(--ts-border-strong);
+   991→  pointer-events: none;
+   992→}
+   993→.ts-rings::before {
+   994→  inset: -8%;
+   995→}
+   996→.ts-rings::after {
+   997→  inset: -16%;
+   998→  border-color: var(--ts-border);
+   999→}
+  1000→
+  1001→/* Hairline corner ornament (luxury detail) */
+  1002→.ts-corner-ornament::before,
+  1003→.ts-corner-ornament::after {
+  1004→  content: "";
+  1005→  position: absolute;
+  1006→  width: 16px;
+  1007→  height: 16px;
+  1008→  border: 1px solid var(--ts-accent);
+  1009→  opacity: 0.4;
+  1010→}
+  1011→.ts-corner-ornament::before {
+  1012→  top: 12px; left: 12px;
+  1013→  border-right: none;
+  1014→  border-bottom: none;
+  1015→}
+  1016→.ts-corner-ornament::after {
+  1017→  bottom: 12px; right: 12px;
+  1018→  border-left: none;
+  1019→  border-top: none;
+  1020→}
+  1021→
+  1022→/* Noise texture overlay (very subtle) */
+  1023→.ts-noise::after {
+  1024→  content: "";
+  1025→  position: absolute;
+  1026→  inset: 0;
+  1027→  pointer-events: none;
+  1028→  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.09  0 0 0 0 0.09  0 0 0 0 0.11  0 0 0 0.02 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  1029→  opacity: 0.4;
+  1030→  mix-blend-mode: multiply;
+  1031→}
+  1032→
+  1033→/* ============================================================
+  1034→   TYPOGRAPHY EXTENSIONS — KPI numbers, gradient text
+  1035→   ============================================================ */
+  1036→
+  1037→/* Big KPI number */
+  1038→.ts-kpi {
+  1039→  font-family: var(--font-inter), sans-serif;
+  1040→  font-variant-numeric: tabular-nums;
+  1041→  font-feature-settings: "tnum", "ss01";
+  1042→  font-size: clamp(2.25rem, 4vw, 3.5rem);
+  1043→  line-height: 1;
+  1044→  letter-spacing: -0.03em;
+  1045→  font-weight: 700;
+  1046→  color: var(--ts-text-primary);
+  1047→}
+  1048→
+  1049→.ts-kpi-sm {
+  1050→  font-family: var(--font-inter), sans-serif;
+  1051→  font-variant-numeric: tabular-nums;
+  1052→  font-feature-settings: "tnum", "ss01";
+  1053→  font-size: clamp(1.75rem, 2.5vw, 2.25rem);
+  1054→  line-height: 1;
+  1055→  letter-spacing: -0.025em;
+  1056→  font-weight: 700;
+  1057→}
+  1058→
+  1059→/* Gradient text — emerald variation */
+  1060→.ts-gradient-text-emerald {
+  1061→  background: linear-gradient(135deg, #0F766E 0%, #134E4A 100%);
+  1062→  -webkit-background-clip: text;
+  1063→  background-clip: text;
+  1064→  -webkit-text-fill-color: transparent;
+  1065→  color: transparent;
+  1066→}
+  1067→
+  1068→/* Gradient text — warm gold variation */
+  1069→.ts-gradient-text-warm {
+  1070→  background: linear-gradient(135deg, #B45309 0%, #92400E 100%);
+  1071→  -webkit-background-clip: text;
+  1072→  background-clip: text;
+  1073→  -webkit-text-fill-color: transparent;
+  1074→  color: transparent;
+  1075→}
+  1076→
+  1077→/* Gradient text — mesh variation */
+  1078→.ts-gradient-text-mesh {
+  1079→  background: linear-gradient(135deg, #18181B 0%, #0F766E 50%, #134E4A 100%);
+  1080→  -webkit-background-clip: text;
+  1081→  background-clip: text;
+  1082→  -webkit-text-fill-color: transparent;
+  1083→  color: transparent;
+  1084→}
+  1085→
+  1086→/* Eyebrow with leading dot (modern) */
+  1087→.ts-eyebrow-dot {
+  1088→  display: inline-flex;
+  1089→  align-items: center;
+  1090→  gap: 0.5rem;
+  1091→  color: var(--ts-accent);
+  1092→  font-size: 0.6875rem;
+  1093→  letter-spacing: 0.24em;
+  1094→  text-transform: uppercase;
+  1095→  font-weight: 600;
+  1096→}
+  1097→.ts-eyebrow-dot::before {
+  1098→  content: "";
+  1099→  width: 6px;
+  1100→  height: 6px;
+  1101→  border-radius: 9999px;
+  1102→  background: var(--ts-accent);
+  1103→  box-shadow: 0 0 0 3px var(--ts-accent-soft);
+  1104→}
+  1105→
+  1106→/* Eyebrow with icon */
+  1107→.ts-eyebrow-icon {
+  1108→  display: inline-flex;
+  1109→  align-items: center;
+  1110→  gap: 0.5rem;
+  1111→  color: var(--ts-accent);
+  1112→  font-size: 0.6875rem;
+  1113→  letter-spacing: 0.24em;
+  1114→  text-transform: uppercase;
+  1115→  font-weight: 600;
+  1116→}
+  1117→
+  1118→/* Caption monospace (for IDs, codes) */
+  1119→.ts-mono {
+  1120→  font-family: var(--font-inter), ui-monospace, monospace;
+  1121→  font-variant-numeric: tabular-nums;
+  1122→  letter-spacing: -0.01em;
+  1123→}
+  1124→
+  1125→/* ============================================================
+  1126→   LAYOUT UTILITIES — bento grid, stat strip, KPI grid
+  1127→   ============================================================ */
+  1128→
+  1129→/* Bento grid — auto-rows + responsive cols */
+  1130→.ts-bento-grid {
+  1131→  display: grid;
+  1132→  grid-template-columns: repeat(4, 1fr);
+  1133→  grid-auto-rows: minmax(140px, auto);
+  1134→  gap: 1rem;
+  1135→}
+  1136→@media (max-width: 1024px) {
+  1137→  .ts-bento-grid { grid-template-columns: repeat(2, 1fr); }
+  1138→}
+  1139→@media (max-width: 640px) {
+  1140→  .ts-bento-grid { grid-template-columns: 1fr; }
+  1141→}
+  1142→
+  1143→/* Stat strip — 4-col responsive */
+  1144→.ts-stat-strip {
+  1145→  display: grid;
+  1146→  grid-template-columns: repeat(4, 1fr);
+  1147→  gap: 1.5rem;
+  1148→}
+  1149→@media (max-width: 768px) {
+  1150→  .ts-stat-strip { grid-template-columns: repeat(2, 1fr); }
+  1151→}
+  1152→
+  1153→/* KPI grid — 3-col responsive */
+  1154→.ts-kpi-grid {
+  1155→  display: grid;
+  1156→  grid-template-columns: repeat(3, 1fr);
+  1157→  gap: 1.25rem;
+  1158→}
+  1159→@media (max-width: 768px) {
+  1160→  .ts-kpi-grid { grid-template-columns: repeat(2, 1fr); }
+  1161→}
+  1162→@media (max-width: 480px) {
+  1163→  .ts-kpi-grid { grid-template-columns: 1fr; }
+  1164→}
+  1165→
+  1166→/* Timeline track (horizontal line behind nodes) */
+  1167→.ts-timeline-track {
+  1168→  position: absolute;
+  1169→  top: 50%;
+  1170→  left: 0;
+  1171→  right: 0;
+  1172→  height: 2px;
+  1173→  background: linear-gradient(90deg, transparent, var(--ts-border-strong) 10%, var(--ts-border-strong) 90%, transparent);
+  1174→  transform: translateY(-50%);
+  1175→}
+  1176→
+  1177→/* ============================================================
+  1178→   ENHANCED DIVIDERS — with center ornaments
+  1179→   ============================================================ */
+  1180→
+  1181→/* Divider with center dot */
+  1182→.ts-divider-dot {
+  1183→  position: relative;
+  1184→  height: 1px;
+  1185→  background: linear-gradient(90deg, transparent, var(--ts-border-strong) 50%, transparent);
+  1186→}
+  1187→.ts-divider-dot::after {
+  1188→  content: "";
+  1189→  position: absolute;
+  1190→  left: 50%;
+  1191→  top: 50%;
+  1192→  width: 6px;
+  1193→  height: 6px;
+  1194→  border-radius: 9999px;
+  1195→  background: var(--ts-accent);
+  1196→  transform: translate(-50%, -50%);
+  1197→  box-shadow: 0 0 0 3px var(--ts-bg);
+  1198→}
+  1199→
+  1200→/* Divider with center X ornament */
+  1201→.ts-divider-x {
+  1202→  position: relative;
+  1203→  display: flex;
+  1204→  align-items: center;
+  1205→  gap: 1rem;
+  1206→}
+  1207→.ts-divider-x::before,
+  1208→.ts-divider-x::after {
+  1209→  content: "";
+  1210→  flex: 1;
+  1211→  height: 1px;
+  1212→  background: linear-gradient(90deg, transparent, var(--ts-border-strong));
+  1213→}
+  1214→.ts-divider-x::after {
+  1215→  background: linear-gradient(90deg, var(--ts-border-strong), transparent);
+  1216→}
+  1217→
+  1218→/* ============================================================
+  1219→   ANIMATIONS — additional modern effects
+  1220→   ============================================================ */
+  1221→
+  1222→@keyframes ts-shimmer-bg {
+  1223→  0% { background-position: -200% 0; }
+  1224→  100% { background-position: 200% 0; }
+  1225→}
+  1226→
+  1227→@keyframes ts-pulse-ring {
+  1228→  0% {
+  1229→    transform: scale(0.95);
+  1230→    opacity: 0.7;
+  1231→  }
+  1232→  50% {
+  1233→    transform: scale(1.05);
+  1234→    opacity: 0.3;
+  1235→  }
+  1236→  100% {
+  1237→    transform: scale(0.95);
+  1238→    opacity: 0.7;
+  1239→  }
+  1240→}
+  1241→
+  1242→@keyframes ts-aurora-drift {
+  1243→  0%, 100% {
+  1244→    transform: translate(0, 0) scale(1);
+  1245→  }
+  1246→  33% {
+  1247→    transform: translate(2%, -1%) scale(1.05);
+  1248→  }
+  1249→  66% {
+  1250→    transform: translate(-1%, 2%) scale(0.95);
+  1251→  }
+  1252→}
+  1253→
+  1254→@keyframes ts-blob-float {
+  1255→  0%, 100% {
+  1256→    transform: translate(0, 0);
+  1257→  }
+  1258→  50% {
+  1259→    transform: translate(2%, -2%);
+  1260→  }
+  1261→}
+  1262→
+  1263→@keyframes ts-gradient-shift {
+  1264→  0% { background-position: 0% 50%; }
+  1265→  50% { background-position: 100% 50%; }
+  1266→  100% { background-position: 0% 50%; }
+  1267→}
+  1268→
+  1269→@keyframes ts-count-up {
+  1270→  from {
+  1271→    opacity: 0;
+  1272→    transform: translateY(12px);
+  1273→  }
+  1274→  to {
+  1275→    opacity: 1;
+  1276→    transform: translateY(0);
+  1277→  }
+  1278→}
+  1279→
+  1280→/* Shimmer skeleton */
+  1281→.ts-shimmer {
+  1282→  background: linear-gradient(
+  1283→    90deg,
+  1284→    transparent 0%,
+  1285→    rgba(24, 24, 27, 0.04) 50%,
+  1286→    transparent 100%
+  1287→  );
+  1288→  background-size: 200% 100%;
+  1289→  animation: ts-shimmer-bg 2s infinite;
+  1290→}
+  1291→
+  1292→/* Animated gradient text */
+  1293→.ts-gradient-animated {
+  1294→  background: linear-gradient(135deg, #18181B, #0F766E, #134E4A, #18181B);
+  1295→  background-size: 300% 300%;
+  1296→  -webkit-background-clip: text;
+  1297→  background-clip: text;
+  1298→  -webkit-text-fill-color: transparent;
+  1299→  color: transparent;
+  1300→  animation: ts-gradient-shift 6s ease-in-out infinite;
+  1301→}
+  1302→
+  1303→/* Aurora drift utility */
+  1304→.ts-aurora-drift {
+  1305→  animation: ts-aurora-drift 20s ease-in-out infinite;
+  1306→}
+  1307→
+  1308→/* Float animation utility */
+  1309→.ts-float-slow {
+  1310→  animation: ts-blob-float 12s ease-in-out infinite;
+  1311→}
+  1312→
+  1313→/* Pulse ring (for emphasis on first timeline node) */
+  1314→.ts-pulse-ring {
+  1315→  position: absolute;
+  1316→  inset: -8px;
+  1317→  border-radius: 9999px;
+  1318→  border: 2px solid var(--ts-accent);
+  1319→  animation: ts-pulse-ring 2.4s ease-in-out infinite;
+  1320→  pointer-events: none;
+  1321→}
+  1322→
+  1323→/* ============================================================
+  1324→   PROGRESS / NAV ENHANCEMENTS
+  1325→   ============================================================ */
+  1326→
+  1327→/* Progress dot indicator (alt to linear bar) */
+  1328→.ts-progress-dot {
+  1329→  width: 8px;
+  1330→  height: 8px;
+  1331→  border-radius: 9999px;
+  1332→  background: var(--ts-border-strong);
+  1333→  transition: all 0.4s var(--ts-ease-out);
+  1334→}
+  1335→.ts-progress-dot.active {
+  1336→  background: var(--ts-accent);
+  1337→  width: 24px;
+  1338→  border-radius: 9999px;
+  1339→}
+  1340→
+  1341→/* ============================================================
+  1342→   HELPER UTILITIES
+  1343→   ============================================================ */
+  1344→
+  1345→/* Text balance for headings */
+  1346→.ts-text-balance {
+  1347→  text-wrap: balance;
+  1348→}
+  1349→
+  1350→/* Tabular numbers */
+  1351→.ts-tabular {
+  1352→  font-variant-numeric: tabular-nums;
+  1353→  font-feature-settings: "tnum";
+  1354→}
+  1355→
+  1356→/* No-scrollbar utility (for inner scroll areas) */
+  1357→.ts-no-scrollbar {
+  1358→  -ms-overflow-style: none;
+  1359→  scrollbar-width: none;
+  1360→}
+  1361→.ts-no-scrollbar::-webkit-scrollbar {
+  1362→  display: none;
+  1363→}
+  1364→
+  1365→/* Premium hover lift (subtle) */
+  1366→.ts-hover-lift {
+  1367→  transition: transform 0.35s var(--ts-ease-out), box-shadow 0.35s var(--ts-ease-out);
+  1368→}
+  1369→.ts-hover-lift:hover {
+  1370→  transform: translateY(-2px);
+  1371→}
+  1372→
+  1373→/* Premium hover glow (emerald) */
+  1374→.ts-hover-glow {
+  1375→  transition: box-shadow 0.35s var(--ts-ease-out);
+  1376→}
+  1377→.ts-hover-glow:hover {
+  1378→  box-shadow: var(--ts-shadow-glow-emerald);
+  1379→}
+  1380→
+  1381→/* Card number marker (top-right corner) */
+  1382→.ts-card-number {
+  1383→  position: absolute;
+  1384→  top: 1.25rem;
+  1385→  right: 1.25rem;
+  1386→  font-family: var(--font-inter), sans-serif;
+  1387→  font-variant-numeric: tabular-nums;
+  1388→  font-size: 0.75rem;
+  1389→  font-weight: 500;
+  1390→  color: var(--ts-text-faint);
+  1391→  letter-spacing: 0.04em;
+  1392→}
+  1393→
+  1394→/* Watermark (large faint number in background) */
+  1395→.ts-watermark {
+  1396→  position: absolute;
+  1397→  font-family: var(--font-inter), sans-serif;
+  1398→  font-variant-numeric: tabular-nums;
+  1399→  font-weight: 800;
+  1400→  font-size: 7rem;
+  1401→  line-height: 1;
+  1402→  color: var(--ts-text-primary);
+  1403→  opacity: 0.04;
+  1404→  pointer-events: none;
+  1405→  user-select: none;
+  1406→}
+  1407→
+  1408→/* Connector arrow (decorative) */
+  1409→.ts-arrow-connector {
+  1410→  display: flex;
+  1411→  align-items: center;
+  1412→  justify-content: center;
+  1413→  width: 32px;
+  1414→  height: 32px;
+  1415→  border-radius: 9999px;
+  1416→  background: var(--ts-surface);
+  1417→  border: 1px solid var(--ts-border-strong);
+  1418→  color: var(--ts-accent);
+  1419→  flex-shrink: 0;
+  1420→}
+  1421→

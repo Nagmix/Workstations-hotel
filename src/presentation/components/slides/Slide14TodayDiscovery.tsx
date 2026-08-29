@@ -1,10 +1,14 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { TODAY_DISCOVERY } from "../../data/slides";
+import { TODAY_DISCOVERY, PRESENTATION_META } from "../../data/slides";
 import {
+  CardIndex,
   IconGlyph,
-  SlideHeader,
+  SectionHeading,
+  SlideBrandChip,
+  StatusPill,
+  Watermark,
   blurIn,
   containerStagger,
   fadeUp,
@@ -13,11 +17,26 @@ import {
 /**
  * Slide 14 — Today's Discovery (9 categories)
  *
- * Clean 3x3 grid (lg) / 2-col (sm) / 1-col (mobile) of discovery
- * categories. Each card has an emerald-tinted icon chip, a slide
- * index marker in the corner, the Arabic title, and the English label.
- * A warm amber blob adds ambient depth without overpowering the grid.
+ * Ambient ts-blob-warm amber top-left + ts-aurora-bg background + ts-noise.
+ *
+ * Clean 3×3 grid (lg) / 2-col (sm) of discovery categories. Each card is
+ * a ts-bento ts-bento-accent with:
+ *  - CardIndex corner marker "01"-"09"
+ *  - ts-icon-chip (emerald tint) with 22px Lucide glyph (or
+ *    ts-icon-chip-gradient filled emerald for the two focal cards)
+ *  - Arabic title (semibold)
+ *  - English small-caps label (lat + ts-mono)
+ *
+ * Two cards (Operations & Priorities) are visually emphasized using
+ * ts-card-mesh + ts-icon-chip-gradient (filled emerald) — they are the
+ * most important discovery topics. Each card carries a faint Watermark
+ * of its number in the background.
+ *
+ * Header uses SectionHeading with ts-pill-dot "9 topics" counter.
+ * SlideBrandChip top-right.
  */
+const FOCAL_INDICES = new Set([2, 8]); // Operations, Priorities (1-indexed within TODAY_DISCOVERY)
+
 export default function Slide14TodayDiscovery() {
   return (
     <motion.section
@@ -25,59 +44,110 @@ export default function Slide14TodayDiscovery() {
       animate="show"
       exit="hidden"
       variants={containerStagger}
-      className="slide-stage slide-pad relative"
+      className="slide-stage slide-pad relative overflow-hidden ts-noise"
       aria-roledescription="slide"
       aria-label="Today's Discovery"
     >
-      {/* Ambient warm blob */}
-      <div className="ts-blob ts-blob-warm w-[440px] h-[440px] -top-32 -left-24" />
+      {/* Aurora ambient */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 ts-aurora-bg opacity-75"
+      />
+      {/* Warm amber blob top-left (distinct from the emerald blobs elsewhere) */}
+      <div
+        aria-hidden="true"
+        className="ts-blob ts-blob-warm ts-float-slow pointer-events-none"
+        style={{
+          top: -160,
+          left: -120,
+          width: 460,
+          height: 460,
+          opacity: 0.55,
+        }}
+      />
+
+      <SlideBrandChip
+        brand={PRESENTATION_META.brand}
+        date={PRESENTATION_META.date}
+      />
 
       <div className="relative z-10 flex flex-col gap-6 w-full max-w-6xl mx-auto">
-        <div className="flex flex-col gap-3">
-          <SlideHeader
-            index="14"
-            eyebrow="اكتشاف اليوم"
-            eyebrowEn="Today's Discovery"
-          />
-          <motion.h2
-            variants={fadeUp}
-            className="ts-h2 text-[var(--ts-text-primary)] max-w-3xl"
-          >
-            ماذا سنناقش اليوم؟
-          </motion.h2>
-          <motion.p
-            variants={fadeUp}
-            className="ts-body text-[var(--ts-text-secondary)] max-w-2xl"
-          >
-            هذه ليست قائمة الأسئلة، بل المحاور التي سنغطيها معًا — نستخدم
-            أدوات الاكتشاف أثناء النقاش.
-          </motion.p>
-        </div>
+        <SectionHeading
+          eyebrow="اكتشاف اليوم"
+          eyebrowEn="Today's Discovery"
+          title={
+            <>
+              ماذا{" "}
+              <span className="ts-gradient-text-emerald">سنناقش اليوم</span>؟
+            </>
+          }
+          subtitle="هذه ليست قائمة الأسئلة، بل المحاور التي سنغطيها معًا — نستخدم أدوات الاكتشاف أثناء النقاش."
+          pill={
+            <StatusPill variant="dot">
+              <span className="lat">9</span> topics
+            </StatusPill>
+          }
+        />
 
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 lg:gap-4">
-          {TODAY_DISCOVERY.map((cat, i) => (
-            <motion.div
-              key={cat.en}
-              custom={i}
-              variants={blurIn}
-              className="ts-card p-5 flex flex-col items-center gap-3 text-center group relative"
-            >
-              <div className="absolute top-3 right-3 ts-slide-index text-[var(--ts-text-faint)] text-[0.625rem]">
-                0{i + 1}
-              </div>
-              <div className="ts-icon-chip mt-1">
-                <IconGlyph name={cat.icon} size={22} />
-              </div>
-              <div>
-                <div className="text-base font-semibold text-[var(--ts-text-primary)] leading-tight">
-                  {cat.title}
+          {TODAY_DISCOVERY.map((cat, i) => {
+            const cardIndex = String(i + 1).padStart(2, "0");
+            const isFocal = FOCAL_INDICES.has(i + 1);
+            return (
+              <motion.article
+                key={cat.en}
+                custom={i}
+                variants={blurIn}
+                className={`relative p-5 flex flex-col items-center gap-3 text-center group overflow-hidden ${
+                  isFocal
+                    ? "ts-card-mesh ts-corner-ornament ts-hover-glow"
+                    : "ts-bento ts-bento-accent"
+                }`}
+              >
+                {/* Faint number watermark */}
+                <Watermark
+                  text={cardIndex}
+                  className="-bottom-4 -left-1 text-[6rem] opacity-[0.05]"
+                />
+
+                {/* Corner card index */}
+                <CardIndex index={cardIndex} />
+
+                {/* Icon chip */}
+                {isFocal ? (
+                  <span
+                    className="ts-icon-chip-gradient mt-1"
+                    aria-hidden="true"
+                  >
+                    <IconGlyph name={cat.icon} size={22} />
+                  </span>
+                ) : (
+                  <span className="ts-icon-chip mt-1" aria-hidden="true">
+                    <IconGlyph name={cat.icon} size={22} />
+                  </span>
+                )}
+
+                {/* Title + label */}
+                <div className="relative">
+                  <div className="text-base font-semibold text-[var(--ts-text-primary)] leading-tight">
+                    {cat.title}
+                  </div>
+                  <div
+                    className="lat ts-mono text-[0.6875rem] text-[var(--ts-text-muted)] tracking-wider uppercase mt-1"
+                    dir="ltr"
+                  >
+                    {cat.en}
+                  </div>
                 </div>
-                <div className="lat text-[0.6875rem] text-[var(--ts-text-muted)] tracking-wider mt-1">
-                  {cat.en}
-                </div>
-              </div>
-            </motion.div>
-          ))}
+
+                {isFocal && (
+                  <span className="ts-pill-solid !py-1 !px-2.5 !text-[0.5625rem] mt-1">
+                    Focus
+                  </span>
+                )}
+              </motion.article>
+            );
+          })}
         </div>
       </div>
     </motion.section>

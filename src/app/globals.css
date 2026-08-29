@@ -603,3 +603,818 @@ body {
   outline-offset: 2px;
   border-radius: 4px;
 }
+
+/* ============================================================
+   ENHANCED MODERN COMPONENT LIBRARY (2025 patterns)
+   Inspired by ui-ux-pro-max-skill reference repo
+   Glass · Bento · Gradient Borders · Mesh · Status Pills · KPIs
+   ============================================================ */
+
+/* ---------- Extended Color Tokens ---------- */
+:root {
+  /* Semantic status colors */
+  --ts-success: #047857;
+  --ts-success-bright: #10B981;
+  --ts-success-soft: rgba(4, 120, 87, 0.08);
+
+  --ts-warning: #B45309;
+  --ts-warning-bright: #F59E0B;
+  --ts-warning-soft: rgba(180, 83, 9, 0.08);
+
+  --ts-danger: #BE123C;
+  --ts-danger-bright: #F43F5E;
+  --ts-danger-soft: rgba(190, 18, 60, 0.08);
+
+  --ts-info: #1D4ED8;
+  --ts-info-bright: #3B82F6;
+  --ts-info-soft: rgba(29, 78, 216, 0.08);
+
+  /* Premium accent variants */
+  --ts-gold: #B45309;
+  --ts-gold-bright: #D97706;
+  --ts-gold-soft: rgba(217, 119, 6, 0.10);
+
+  /* Gradients */
+  --ts-gradient-emerald: linear-gradient(135deg, #0F766E 0%, #134E4A 100%);
+  --ts-gradient-emerald-bright: linear-gradient(135deg, #0D9488 0%, #0F766E 100%);
+  --ts-gradient-warm: linear-gradient(135deg, #B45309 0%, #92400E 100%);
+  --ts-gradient-mesh: linear-gradient(135deg, #0F766E 0%, #0D9488 50%, #134E4A 100%);
+  --ts-gradient-hero: linear-gradient(135deg, #18181B 0%, #134E4A 70%, #0F766E 100%);
+
+  /* Premium shadows */
+  --ts-shadow-glow-emerald: 0 0 30px rgba(15, 118, 110, 0.25), 0 0 60px rgba(15, 118, 110, 0.12);
+  --ts-shadow-glow-warm: 0 0 30px rgba(180, 83, 9, 0.20);
+  --ts-shadow-float: 0 20px 50px -10px rgba(24, 24, 27, 0.18), 0 8px 16px -4px rgba(24, 24, 27, 0.08);
+  --ts-shadow-soft-float: 0 12px 32px -8px rgba(24, 24, 27, 0.12);
+}
+
+/* ============================================================
+   NEW CARD VARIANTS — Bento, Glass, Gradient Border
+   ============================================================ */
+
+/* Bento card — Apple-style large tile with hover lift */
+.ts-bento {
+  background: var(--ts-surface);
+  border: 1px solid var(--ts-border);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--ts-shadow-card);
+  transition: transform 0.4s var(--ts-ease-out), box-shadow 0.4s var(--ts-ease-out), border-color 0.4s var(--ts-ease-out);
+  position: relative;
+  overflow: hidden;
+}
+.ts-bento:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--ts-shadow-float);
+  border-color: var(--ts-border-accent);
+}
+
+/* Bento card with subtle top accent strip */
+.ts-bento-accent::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--ts-gradient-emerald-bright);
+  opacity: 0;
+  transition: opacity 0.4s var(--ts-ease-out);
+}
+.ts-bento-accent:hover::before { opacity: 1; }
+
+/* Glass card — frosted glass effect for floating elements */
+.ts-glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: var(--ts-shadow-soft-float);
+}
+
+/* Glass card on emerald tint */
+.ts-glass-emerald {
+  background: rgba(15, 118, 110, 0.06);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(15, 118, 110, 0.18);
+}
+
+/* Gradient border card — animated gradient frame */
+.ts-card-gradient-border {
+  position: relative;
+  background: var(--ts-surface);
+  border-radius: var(--radius-lg);
+  padding: 1px;
+  background: linear-gradient(135deg, var(--ts-accent) 0%, rgba(15, 118, 110, 0.2) 50%, var(--ts-accent-bright) 100%);
+}
+.ts-card-gradient-border > * {
+  background: var(--ts-surface);
+  border-radius: calc(var(--radius-lg) - 1px);
+}
+
+/* Mesh card — has a faint mesh background inside */
+.ts-card-mesh {
+  background: var(--ts-surface);
+  border: 1px solid var(--ts-border);
+  border-radius: var(--radius-lg);
+  position: relative;
+  overflow: hidden;
+}
+.ts-card-mesh::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(15, 118, 110, 0.05), transparent 50%),
+    radial-gradient(circle at 100% 100%, rgba(180, 83, 9, 0.04), transparent 50%);
+  pointer-events: none;
+}
+.ts-card-mesh > * { position: relative; z-index: 1; }
+
+/* Frosted overlay card */
+.ts-card-frosted {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--ts-shadow-elevated);
+}
+
+/* Deep gradient card (premium emphasis) */
+.ts-card-deep {
+  background: var(--ts-gradient-emerald);
+  border: 1px solid rgba(15, 118, 110, 0.4);
+  border-radius: var(--radius-lg);
+  color: var(--ts-text-inverse);
+  box-shadow: 0 12px 36px -8px rgba(15, 118, 110, 0.4);
+  position: relative;
+  overflow: hidden;
+}
+.ts-card-deep::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 50%;
+  background: radial-gradient(ellipse at top, rgba(255, 255, 255, 0.12), transparent 70%);
+  pointer-events: none;
+}
+
+/* ============================================================
+   STATUS PILLS — semantic variant color system
+   ============================================================ */
+
+.ts-pill-success {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.375rem 0.875rem;
+  border-radius: 9999px;
+  background: var(--ts-success-soft);
+  border: 1px solid rgba(4, 120, 87, 0.22);
+  color: var(--ts-success);
+  font-size: 0.6875rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.ts-pill-warning {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.375rem 0.875rem;
+  border-radius: 9999px;
+  background: var(--ts-warning-soft);
+  border: 1px solid rgba(180, 83, 9, 0.22);
+  color: var(--ts-warning);
+  font-size: 0.6875rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.ts-pill-danger {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.375rem 0.875rem;
+  border-radius: 9999px;
+  background: var(--ts-danger-soft);
+  border: 1px solid rgba(190, 18, 60, 0.22);
+  color: var(--ts-danger);
+  font-size: 0.6875rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.ts-pill-info {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.375rem 0.875rem;
+  border-radius: 9999px;
+  background: var(--ts-info-soft);
+  border: 1px solid rgba(29, 78, 216, 0.22);
+  color: var(--ts-info);
+  font-size: 0.6875rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* Dot indicator pill (with leading dot) */
+.ts-pill-dot {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.375rem 0.875rem;
+  border-radius: 9999px;
+  background: var(--ts-surface);
+  border: 1px solid var(--ts-border-strong);
+  color: var(--ts-text-secondary);
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+.ts-pill-dot::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background: var(--ts-accent);
+}
+.ts-pill-dot.success::before { background: var(--ts-success-bright); }
+.ts-pill-dot.warning::before { background: var(--ts-warning-bright); }
+.ts-pill-dot.danger::before { background: var(--ts-danger-bright); }
+
+/* Floating badge ("Most Popular" style, sits above a card) */
+.ts-floating-badge {
+  position: absolute;
+  top: -0.75rem;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.375rem 1rem;
+  border-radius: 9999px;
+  background: var(--ts-gradient-emerald);
+  color: #ffffff;
+  font-size: 0.6875rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 600;
+  box-shadow: 0 6px 18px rgba(15, 118, 110, 0.35);
+  white-space: nowrap;
+  z-index: 2;
+}
+
+/* Ribbon badge (corner) */
+.ts-ribbon {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding: 0.25rem 0.625rem;
+  border-radius: 6px;
+  background: var(--ts-gradient-emerald);
+  color: #ffffff;
+  font-size: 0.625rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(15, 118, 110, 0.25);
+  z-index: 2;
+}
+
+/* ============================================================
+   ENHANCED ICON CHIPS — gradient, glow, dual-tone
+   ============================================================ */
+
+/* Icon chip with gradient fill */
+.ts-icon-chip-gradient {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--ts-gradient-emerald);
+  color: #ffffff;
+  box-shadow: 0 6px 18px rgba(15, 118, 110, 0.30);
+}
+
+/* Icon chip with glow ring (animated pulse) */
+.ts-icon-chip-glow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--ts-accent-tint);
+  border: 1px solid var(--ts-border-accent);
+  color: var(--ts-accent);
+  position: relative;
+}
+.ts-icon-chip-glow::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: 16px;
+  background: radial-gradient(circle, rgba(15, 118, 110, 0.18), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s var(--ts-ease-out);
+  pointer-events: none;
+}
+.ts-icon-chip-glow:hover::after { opacity: 1; }
+
+/* Large icon chip (for headers) */
+.ts-icon-chip-lg {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  background: var(--ts-accent-tint);
+  border: 1px solid var(--ts-border-accent);
+  color: var(--ts-accent);
+}
+
+/* Icon chip with status color variants */
+.ts-icon-chip-success {
+  background: var(--ts-success-soft);
+  border: 1px solid rgba(4, 120, 87, 0.22);
+  color: var(--ts-success);
+}
+.ts-icon-chip-warning {
+  background: var(--ts-warning-soft);
+  border: 1px solid rgba(180, 83, 9, 0.22);
+  color: var(--ts-warning);
+}
+.ts-icon-chip-info {
+  background: var(--ts-info-soft);
+  border: 1px solid rgba(29, 78, 216, 0.22);
+  color: var(--ts-info);
+}
+
+/* ============================================================
+   PREMIUM DECORATIVE — mesh, aurora, noise, hairlines
+   ============================================================ */
+
+/* Mesh gradient background */
+.ts-mesh-bg {
+  background:
+    radial-gradient(circle at 20% 30%, rgba(15, 118, 110, 0.06), transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(180, 83, 9, 0.04), transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(13, 148, 136, 0.03), transparent 60%);
+}
+
+/* Aurora background (more saturated) */
+.ts-aurora-bg {
+  background:
+    radial-gradient(ellipse at top, rgba(15, 118, 110, 0.08), transparent 50%),
+    radial-gradient(ellipse at bottom right, rgba(180, 83, 9, 0.05), transparent 50%),
+    radial-gradient(ellipse at bottom left, rgba(13, 148, 136, 0.05), transparent 50%);
+}
+
+/* Mesh blob (bigger, more colorful) */
+.ts-blob-mesh {
+  background:
+    radial-gradient(circle at 30% 30%, rgba(15, 118, 110, 0.20), transparent 50%),
+    radial-gradient(circle at 70% 70%, rgba(13, 148, 136, 0.16), transparent 50%);
+}
+
+/* Concentric ring decoration */
+.ts-rings::before,
+.ts-rings::after {
+  content: "";
+  position: absolute;
+  border-radius: 9999px;
+  border: 1px dashed var(--ts-border-strong);
+  pointer-events: none;
+}
+.ts-rings::before {
+  inset: -8%;
+}
+.ts-rings::after {
+  inset: -16%;
+  border-color: var(--ts-border);
+}
+
+/* Hairline corner ornament (luxury detail) */
+.ts-corner-ornament::before,
+.ts-corner-ornament::after {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border: 1px solid var(--ts-accent);
+  opacity: 0.4;
+}
+.ts-corner-ornament::before {
+  top: 12px; left: 12px;
+  border-right: none;
+  border-bottom: none;
+}
+.ts-corner-ornament::after {
+  bottom: 12px; right: 12px;
+  border-left: none;
+  border-top: none;
+}
+
+/* Noise texture overlay (very subtle) */
+.ts-noise::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.09  0 0 0 0 0.09  0 0 0 0 0.11  0 0 0 0.02 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.4;
+  mix-blend-mode: multiply;
+}
+
+/* ============================================================
+   TYPOGRAPHY EXTENSIONS — KPI numbers, gradient text
+   ============================================================ */
+
+/* Big KPI number */
+.ts-kpi {
+  font-family: var(--font-inter), sans-serif;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum", "ss01";
+  font-size: clamp(2.25rem, 4vw, 3.5rem);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  font-weight: 700;
+  color: var(--ts-text-primary);
+}
+
+.ts-kpi-sm {
+  font-family: var(--font-inter), sans-serif;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum", "ss01";
+  font-size: clamp(1.75rem, 2.5vw, 2.25rem);
+  line-height: 1;
+  letter-spacing: -0.025em;
+  font-weight: 700;
+}
+
+/* Gradient text — emerald variation */
+.ts-gradient-text-emerald {
+  background: linear-gradient(135deg, #0F766E 0%, #134E4A 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* Gradient text — warm gold variation */
+.ts-gradient-text-warm {
+  background: linear-gradient(135deg, #B45309 0%, #92400E 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* Gradient text — mesh variation */
+.ts-gradient-text-mesh {
+  background: linear-gradient(135deg, #18181B 0%, #0F766E 50%, #134E4A 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* Eyebrow with leading dot (modern) */
+.ts-eyebrow-dot {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--ts-accent);
+  font-size: 0.6875rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.ts-eyebrow-dot::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background: var(--ts-accent);
+  box-shadow: 0 0 0 3px var(--ts-accent-soft);
+}
+
+/* Eyebrow with icon */
+.ts-eyebrow-icon {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--ts-accent);
+  font-size: 0.6875rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* Caption monospace (for IDs, codes) */
+.ts-mono {
+  font-family: var(--font-inter), ui-monospace, monospace;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+}
+
+/* ============================================================
+   LAYOUT UTILITIES — bento grid, stat strip, KPI grid
+   ============================================================ */
+
+/* Bento grid — auto-rows + responsive cols */
+.ts-bento-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: minmax(140px, auto);
+  gap: 1rem;
+}
+@media (max-width: 1024px) {
+  .ts-bento-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  .ts-bento-grid { grid-template-columns: 1fr; }
+}
+
+/* Stat strip — 4-col responsive */
+.ts-stat-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+@media (max-width: 768px) {
+  .ts-stat-strip { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* KPI grid — 3-col responsive */
+.ts-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+@media (max-width: 768px) {
+  .ts-kpi-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 480px) {
+  .ts-kpi-grid { grid-template-columns: 1fr; }
+}
+
+/* Timeline track (horizontal line behind nodes) */
+.ts-timeline-track {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--ts-border-strong) 10%, var(--ts-border-strong) 90%, transparent);
+  transform: translateY(-50%);
+}
+
+/* ============================================================
+   ENHANCED DIVIDERS — with center ornaments
+   ============================================================ */
+
+/* Divider with center dot */
+.ts-divider-dot {
+  position: relative;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--ts-border-strong) 50%, transparent);
+}
+.ts-divider-dot::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background: var(--ts-accent);
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 0 3px var(--ts-bg);
+}
+
+/* Divider with center X ornament */
+.ts-divider-x {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.ts-divider-x::before,
+.ts-divider-x::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--ts-border-strong));
+}
+.ts-divider-x::after {
+  background: linear-gradient(90deg, var(--ts-border-strong), transparent);
+}
+
+/* ============================================================
+   ANIMATIONS — additional modern effects
+   ============================================================ */
+
+@keyframes ts-shimmer-bg {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes ts-pulse-ring {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.3;
+  }
+  100% {
+    transform: scale(0.95);
+    opacity: 0.7;
+  }
+}
+
+@keyframes ts-aurora-drift {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(2%, -1%) scale(1.05);
+  }
+  66% {
+    transform: translate(-1%, 2%) scale(0.95);
+  }
+}
+
+@keyframes ts-blob-float {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(2%, -2%);
+  }
+}
+
+@keyframes ts-gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes ts-count-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Shimmer skeleton */
+.ts-shimmer {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(24, 24, 27, 0.04) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: ts-shimmer-bg 2s infinite;
+}
+
+/* Animated gradient text */
+.ts-gradient-animated {
+  background: linear-gradient(135deg, #18181B, #0F766E, #134E4A, #18181B);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: ts-gradient-shift 6s ease-in-out infinite;
+}
+
+/* Aurora drift utility */
+.ts-aurora-drift {
+  animation: ts-aurora-drift 20s ease-in-out infinite;
+}
+
+/* Float animation utility */
+.ts-float-slow {
+  animation: ts-blob-float 12s ease-in-out infinite;
+}
+
+/* Pulse ring (for emphasis on first timeline node) */
+.ts-pulse-ring {
+  position: absolute;
+  inset: -8px;
+  border-radius: 9999px;
+  border: 2px solid var(--ts-accent);
+  animation: ts-pulse-ring 2.4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* ============================================================
+   PROGRESS / NAV ENHANCEMENTS
+   ============================================================ */
+
+/* Progress dot indicator (alt to linear bar) */
+.ts-progress-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 9999px;
+  background: var(--ts-border-strong);
+  transition: all 0.4s var(--ts-ease-out);
+}
+.ts-progress-dot.active {
+  background: var(--ts-accent);
+  width: 24px;
+  border-radius: 9999px;
+}
+
+/* ============================================================
+   HELPER UTILITIES
+   ============================================================ */
+
+/* Text balance for headings */
+.ts-text-balance {
+  text-wrap: balance;
+}
+
+/* Tabular numbers */
+.ts-tabular {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+/* No-scrollbar utility (for inner scroll areas) */
+.ts-no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.ts-no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Premium hover lift (subtle) */
+.ts-hover-lift {
+  transition: transform 0.35s var(--ts-ease-out), box-shadow 0.35s var(--ts-ease-out);
+}
+.ts-hover-lift:hover {
+  transform: translateY(-2px);
+}
+
+/* Premium hover glow (emerald) */
+.ts-hover-glow {
+  transition: box-shadow 0.35s var(--ts-ease-out);
+}
+.ts-hover-glow:hover {
+  box-shadow: var(--ts-shadow-glow-emerald);
+}
+
+/* Card number marker (top-right corner) */
+.ts-card-number {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  font-family: var(--font-inter), sans-serif;
+  font-variant-numeric: tabular-nums;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--ts-text-faint);
+  letter-spacing: 0.04em;
+}
+
+/* Watermark (large faint number in background) */
+.ts-watermark {
+  position: absolute;
+  font-family: var(--font-inter), sans-serif;
+  font-variant-numeric: tabular-nums;
+  font-weight: 800;
+  font-size: 7rem;
+  line-height: 1;
+  color: var(--ts-text-primary);
+  opacity: 0.04;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Connector arrow (decorative) */
+.ts-arrow-connector {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 9999px;
+  background: var(--ts-surface);
+  border: 1px solid var(--ts-border-strong);
+  color: var(--ts-accent);
+  flex-shrink: 0;
+}
