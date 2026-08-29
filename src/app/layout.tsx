@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, IBM_Plex_Sans_Arabic } from "next/font/google";
 import "./globals.css";
+import "@/presentation/styles/luxury-redesign.css";
 import { Toaster } from "@/components/ui/toaster";
 
 const inter = Inter({
