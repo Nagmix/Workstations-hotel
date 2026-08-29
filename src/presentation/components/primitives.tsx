@@ -253,14 +253,14 @@ export function SlideHeader({
         align === "center" ? "justify-center" : ""
       }`}
     >
-      <span className="ts-slide-index text-[var(--ts-accent)] text-sm">
+      <span className="ts-slide-index lat text-[var(--ts-accent)] text-sm font-bold tracking-widest">
         {index}
       </span>
-      <span className="h-px w-8 bg-[var(--ts-border-strong)]" />
-      <span className="ts-eyebrow text-[var(--ts-text-secondary)]">
+      <span className="h-px w-10 bg-gradient-to-l from-transparent to-[var(--ts-accent)] opacity-70" />
+      <span className="ts-eyebrow text-[var(--ts-text-secondary)] font-semibold">
         {eyebrow}
         <span className="mx-2 text-[var(--ts-text-faint)]">·</span>
-        <span className="lat text-[var(--ts-text-muted)]">{eyebrowEn}</span>
+        <span className="lat text-[var(--ts-text-muted)] font-medium">{eyebrowEn}</span>
       </span>
     </motion.div>
   );
@@ -331,14 +331,14 @@ export function SectionHeading({
   return (
     <motion.div
       variants={fadeUp}
-      className={`flex flex-col gap-3 ${
+      className={`flex flex-col gap-4 ${
         isCenter ? "items-center text-center" : "items-start"
       }`}
     >
       <div className="flex items-center gap-3 flex-wrap">
         <span className="ts-eyebrow-dot">{eyebrow}</span>
         {eyebrowEn && (
-          <span className="lat text-[0.6875rem] tracking-[0.22em] uppercase text-[var(--ts-text-muted)]">
+          <span className="lat text-[0.6875rem] tracking-[0.22em] uppercase text-[var(--ts-text-muted)] font-semibold">
             · {eyebrowEn}
           </span>
         )}
@@ -353,7 +353,7 @@ export function SectionHeading({
       {subtitle && (
         <motion.p
           variants={fadeUp}
-          className={`ts-body-lg text-[var(--ts-text-secondary)] max-w-2xl ${
+          className={`ts-body-lg text-[var(--ts-text-secondary)] max-w-2xl leading-relaxed ${
             isCenter ? "mx-auto" : ""
           }`}
         >
@@ -385,21 +385,19 @@ export function StatBlock({
   return (
     <motion.div
       variants={fadeUp}
-      className={`ts-card p-5 flex flex-col gap-3 ${className}`}
+      className={`ts-card ts-card-accent-bar p-5 flex flex-col gap-3 ${className}`}
     >
-      {icon && (
-        <div className="flex items-center justify-between">
-          {icon}
-          {trend && (
-            <span className={`ts-pill-dot ${trendVariant}`}>
-              <span className="lat text-[0.6875rem]">{trend}</span>
-            </span>
-          )}
-        </div>
-      )}
+      <div className="flex items-center justify-between">
+        {icon ? <span>{icon}</span> : <span className="h-8 w-8" />}
+        {trend && (
+          <span className={`ts-pill-dot ${trendVariant}`}>
+            <span className="lat text-[0.6875rem] font-semibold">{trend}</span>
+          </span>
+        )}
+      </div>
       <div className="ts-kpi-sm ts-gradient-text-emerald lat">{value}</div>
       <div className="flex items-baseline gap-2 flex-wrap">
-        <span className="text-sm font-medium text-[var(--ts-text-primary)]">
+        <span className="text-sm font-semibold text-[var(--ts-text-primary)]">
           {label}
         </span>
         {labelEn && (
@@ -591,7 +589,7 @@ export function BentoCard({
   return (
     <motion.div
       variants={scaleIn}
-      className={`ts-bento ${accent ? "ts-bento-accent" : ""} p-5 ${
+      className={`ts-bento ${accent ? "ts-bento-accent" : ""} p-5 lg:p-6 ${
         index ? "relative" : ""
       } ${className}`}
     >
@@ -612,13 +610,13 @@ export function SlideBrandChip({
   return (
     <motion.div
       variants={fadeUp}
-      className="absolute top-5 right-5 z-20 flex items-center gap-3"
+      className="absolute top-6 right-6 lg:top-8 lg:right-8 z-20 flex items-center gap-3"
     >
-      <span className="lat text-[0.6875rem] tracking-[0.22em] uppercase font-semibold text-[var(--ts-text-secondary)]">
+      <span className="lat text-[0.6875rem] tracking-[0.24em] uppercase font-bold text-[var(--ts-text-primary)]">
         {brand}
       </span>
-      <span className="text-[var(--ts-text-faint)] text-xs">·</span>
-      <span className="lat text-[0.6875rem] tracking-[0.18em] text-[var(--ts-text-muted)] ts-mono">
+      <span className="h-3 w-px bg-[var(--ts-border-strong)]" />
+      <span className="lat text-[0.6875rem] tracking-[0.18em] text-[var(--ts-text-muted)] ts-mono font-medium">
         {date}
       </span>
     </motion.div>

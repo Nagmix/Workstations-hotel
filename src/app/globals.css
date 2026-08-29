@@ -41,52 +41,60 @@
   --radius-2xl: 28px;
 }
 
-/* ---------- Design Tokens (Modern Light) ---------- */
+/* ---------- Design Tokens (Modern Light — Premium Refinement) ---------- */
 :root {
-  /* Surfaces — warm linen base, pure white cards */
-  --ts-bg: #F6F4EF;
-  --ts-bg-soft: #FAF8F4;
-  --ts-bg-warm: #F2EFE8;
+  /* Surfaces — clean warm linen with a softer, more luminous base */
+  --ts-bg: #F4F1EA;
+  --ts-bg-soft: #FAF8F3;
+  --ts-bg-warm: #EFEAE0;
   --ts-surface: #FFFFFF;
-  --ts-surface-elevated: #FCFBF8;
+  --ts-surface-elevated: #FDFCF9;
   --ts-surface-raised: #FFFFFF;
-  --ts-surface-tint: #F4F1EA;
+  --ts-surface-tint: #F6F2E9;
+  --ts-surface-sunk: #F0EBE0;
 
-  /* Text — rich near-black on warm gray scale */
-  --ts-text-primary: #18181B;
-  --ts-text-secondary: #52525B;
-  --ts-text-muted: #71717A;
-  --ts-text-faint: #A1A1AA;
+  /* Text — richer contrast scale (darker muted = better legibility) */
+  --ts-text-primary: #14181B;
+  --ts-text-secondary: #3F3F46;
+  --ts-text-muted: #52525B;
+  --ts-text-faint: #8A8A93;
+  --ts-text-whisper: #B4B4BC;
   --ts-text-inverse: #FAFAF9;
 
-  /* Accent — deep emerald (modern, premium, hospitality) */
-  --ts-accent: #0F766E;
-  --ts-accent-bright: #0D9488;
-  --ts-accent-deep: #134E4A;
-  --ts-accent-soft: rgba(15, 118, 110, 0.08);
-  --ts-accent-softer: rgba(15, 118, 110, 0.04);
-  --ts-accent-tint: rgba(15, 118, 110, 0.06);
+  /* Accent — refined emerald with brighter end for KPI emphasis */
+  --ts-accent: #0E7C70;
+  --ts-accent-bright: #14B8A6;
+  --ts-accent-deep: #0B4D45;
+  --ts-accent-soft: rgba(14, 124, 112, 0.10);
+  --ts-accent-softer: rgba(14, 124, 112, 0.05);
+  --ts-accent-tint: rgba(14, 124, 112, 0.07);
+  --ts-accent-richer: #0D6357;
 
   /* Secondary warm accent (amber, used sparingly) */
   --ts-warm: #B45309;
-  --ts-warm-soft: rgba(180, 83, 9, 0.08);
+  --ts-warm-bright: #D97706;
+  --ts-warm-soft: rgba(180, 83, 9, 0.10);
 
-  /* Borders — subtle warm gray */
-  --ts-border: rgba(24, 24, 27, 0.07);
-  --ts-border-strong: rgba(24, 24, 27, 0.11);
-  --ts-border-faint: rgba(24, 24, 27, 0.04);
-  --ts-border-accent: rgba(15, 118, 110, 0.28);
+  /* Borders — clearer hierarchy, slightly stronger for definition */
+  --ts-border: rgba(20, 24, 27, 0.08);
+  --ts-border-strong: rgba(20, 24, 27, 0.14);
+  --ts-border-faint: rgba(20, 24, 27, 0.05);
+  --ts-border-accent: rgba(14, 124, 112, 0.32);
+  --ts-border-accent-strong: rgba(14, 124, 112, 0.45);
 
-  /* Shadows — soft, layered, modern */
-  --ts-shadow-soft: 0 1px 2px rgba(24, 24, 27, 0.04), 0 4px 16px rgba(24, 24, 27, 0.05);
-  --ts-shadow-elevated: 0 1px 3px rgba(24, 24, 27, 0.05), 0 8px 28px rgba(24, 24, 27, 0.08);
-  --ts-shadow-card: 0 1px 0 rgba(24, 24, 27, 0.03), 0 1px 3px rgba(24, 24, 27, 0.04), 0 6px 20px rgba(24, 24, 27, 0.05);
-  --ts-shadow-accent: 0 8px 28px rgba(15, 118, 110, 0.18);
-  --ts-shadow-accent-soft: 0 4px 18px rgba(15, 118, 110, 0.10);
+  /* Shadows — sharper, more architectural (less spread, more lift) */
+  --ts-shadow-soft: 0 1px 2px rgba(20, 24, 27, 0.05), 0 2px 8px rgba(20, 24, 27, 0.04);
+  --ts-shadow-card: 0 1px 0 rgba(20, 24, 27, 0.04), 0 1px 2px rgba(20, 24, 27, 0.04), 0 4px 16px -4px rgba(20, 24, 27, 0.06);
+  --ts-shadow-elevated: 0 1px 0 rgba(20, 24, 27, 0.04), 0 4px 12px -2px rgba(20, 24, 27, 0.06), 0 12px 32px -8px rgba(20, 24, 27, 0.10);
+  --ts-shadow-float: 0 1px 0 rgba(20, 24, 27, 0.03), 0 8px 24px -6px rgba(20, 24, 27, 0.12), 0 20px 48px -12px rgba(20, 24, 27, 0.16);
+  --ts-shadow-accent: 0 8px 28px rgba(14, 124, 112, 0.20), 0 2px 6px rgba(14, 124, 112, 0.10);
+  --ts-shadow-accent-soft: 0 4px 18px rgba(14, 124, 112, 0.12);
+  --ts-shadow-inset: inset 0 1px 0 rgba(255, 255, 255, 0.6), inset 0 -1px 0 rgba(20, 24, 27, 0.03);
 
   /* Motion */
   --ts-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --ts-ease-soft: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ts-ease-snap: cubic-bezier(0.34, 1.56, 0.64, 1);
   --ts-dur-fast: 220ms;
   --ts-dur-base: 420ms;
   --ts-dur-slow: 700ms;
@@ -126,29 +134,29 @@ body {
   letter-spacing: -0.01em;
 }
 
-/* ---------- Typography Scale ---------- */
+/* ---------- Typography Scale — Refined Hierarchy ---------- */
 .ts-display {
   font-size: clamp(3rem, 7vw, 6.25rem);
   line-height: 1.02;
-  letter-spacing: -0.025em;
-  font-weight: 600;
+  letter-spacing: -0.035em;
+  font-weight: 700;
 }
 .ts-h1 {
   font-size: clamp(2.25rem, 4.5vw, 4rem);
-  line-height: 1.08;
-  letter-spacing: -0.02em;
-  font-weight: 600;
+  line-height: 1.06;
+  letter-spacing: -0.025em;
+  font-weight: 700;
 }
 .ts-h2 {
   font-size: clamp(1.75rem, 3vw, 2.625rem);
-  line-height: 1.15;
-  letter-spacing: -0.015em;
+  line-height: 1.14;
+  letter-spacing: -0.018em;
   font-weight: 600;
 }
 .ts-h3 {
   font-size: clamp(1.25rem, 1.75vw, 1.5rem);
   line-height: 1.3;
-  letter-spacing: -0.008em;
+  letter-spacing: -0.01em;
   font-weight: 600;
 }
 .ts-body-lg {
@@ -169,46 +177,54 @@ body {
 .ts-eyebrow {
   font-size: 0.6875rem;
   line-height: 1.4;
-  font-weight: 500;
-  letter-spacing: 0.22em;
+  font-weight: 600;
+  letter-spacing: 0.24em;
   text-transform: uppercase;
 }
 
-/* ---------- Presentation Root ---------- */
+/* ---------- Presentation Root — Layered Spotlight ---------- */
 .presentation-root {
   min-height: 100vh;
   height: 100vh;
   width: 100vw;
   overflow: hidden;
   background:
+    /* Center spotlight: luminous warm-white behind content */
     radial-gradient(
-      ellipse 70% 50% at 50% -8%,
-      rgba(15, 118, 110, 0.06),
+      ellipse 60% 50% at 50% 42%,
+      rgba(255, 253, 248, 0.95) 0%,
+      rgba(247, 244, 236, 0.6) 40%,
+      transparent 75%
+    ),
+    /* Soft emerald wash from top-left */
+    radial-gradient(
+      ellipse 50% 60% at 12% 8%,
+      rgba(14, 124, 112, 0.06),
       transparent 60%
     ),
+    /* Subtle warm amber from bottom-right */
     radial-gradient(
-      ellipse 50% 35% at 100% 100%,
-      rgba(180, 83, 9, 0.04),
+      ellipse 45% 40% at 95% 100%,
+      rgba(180, 83, 9, 0.045),
       transparent 60%
     ),
+    /* Edge vignette for depth */
     radial-gradient(
-      ellipse 55% 40% at 0% 60%,
-      rgba(15, 118, 110, 0.035),
-      transparent 65%
+      ellipse 100% 80% at 50% 50%,
+      transparent 60%,
+      rgba(20, 24, 27, 0.025) 100%
     ),
     var(--ts-bg);
 }
 
-/* Subtle ambient grain for warmth and depth */
-.presentation-root::before {
+/* Hairline top inner-border for the canvas (defines the stage) */
+.presentation-root::after {
   content: "";
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.09  0 0 0 0 0.09  0 0 0 0 0.11  0 0 0 0.025 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  opacity: 0.6;
-  mix-blend-mode: multiply;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 
 /* ---------- Slide primitives ---------- */
@@ -222,8 +238,9 @@ body {
   z-index: 1;
 }
 
+/* Harmonized slide padding — 8/16/24 rhythm */
 .slide-pad {
-  padding: clamp(2rem, 5vw, 5rem);
+  padding: clamp(2.25rem, 4.5vw, 4.5rem) clamp(2.5rem, 5vw, 5.5rem);
 }
 
 /* Modifier: top-align slides whose content fills the viewport */
@@ -231,21 +248,58 @@ body {
   justify-content: flex-start;
 }
 
-/* ---------- Modern Card System ---------- */
+/* ---------- Modern Card System — Refined ---------- */
 
-/* Standard surface card — pure white, soft shadow, hairline border */
+/* Standard surface card — pure white, sharp shadow, hairline border */
 .ts-card {
   background: var(--ts-surface);
   border: 1px solid var(--ts-border);
   border-radius: var(--radius-lg);
   box-shadow: var(--ts-shadow-card);
-  transition: transform 0.35s var(--ts-ease-out), box-shadow 0.35s var(--ts-ease-out), border-color 0.35s var(--ts-ease-out);
+  transition: transform 0.4s var(--ts-ease-out), box-shadow 0.4s var(--ts-ease-out), border-color 0.4s var(--ts-ease-out);
+  position: relative;
 }
 
 .ts-card:hover {
-  transform: translateY(-3px);
+  transform: translateY(-4px);
   box-shadow: var(--ts-shadow-elevated);
   border-color: var(--ts-border-accent);
+}
+
+/* Card with left accent bar — anchored, branded */
+.ts-card-accent-bar {
+  position: relative;
+  overflow: hidden;
+}
+.ts-card-accent-bar::before {
+  content: "";
+  position: absolute;
+  top: 14px;
+  bottom: 14px;
+  left: 0;
+  width: 3px;
+  border-radius: 0 3px 3px 0;
+  background: linear-gradient(180deg, var(--ts-accent-bright), var(--ts-accent) 60%, var(--ts-accent-deep));
+  opacity: 0.85;
+  transition: opacity 0.4s var(--ts-ease-out), transform 0.4s var(--ts-ease-out);
+}
+.ts-card-accent-bar:hover::before {
+  opacity: 1;
+  transform: scaleY(1.05);
+}
+
+/* Card with top accent strip (alternative anchor) */
+.ts-card-accent-top {
+  position: relative;
+  overflow: hidden;
+}
+.ts-card-accent-top::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--ts-accent-bright), var(--ts-accent) 60%, var(--ts-accent-deep));
+  opacity: 0.9;
 }
 
 /* Elevated card with stronger shadow for focal elements */
@@ -258,29 +312,30 @@ body {
 
 /* Accent card — emerald-tinted surface for emphasis */
 .ts-card-accent {
-  background: linear-gradient(180deg, rgba(15, 118, 110, 0.05), rgba(15, 118, 110, 0.015));
+  background: linear-gradient(180deg, rgba(14, 124, 112, 0.06), rgba(14, 124, 112, 0.015));
   border: 1px solid var(--ts-border-accent);
   border-radius: var(--radius-lg);
-  box-shadow: var(--ts-shadow-accent-soft);
+  box-shadow: var(--ts-shadow-accent-soft), var(--ts-shadow-inset);
 }
 
 /* Warm card — for highlight/CTA elements */
 .ts-card-warm {
-  background: linear-gradient(180deg, rgba(180, 83, 9, 0.06), rgba(180, 83, 9, 0.015));
-  border: 1px solid rgba(180, 83, 9, 0.22);
+  background: linear-gradient(180deg, rgba(180, 83, 9, 0.07), rgba(180, 83, 9, 0.015));
+  border: 1px solid rgba(180, 83, 9, 0.25);
   border-radius: var(--radius-lg);
+  box-shadow: 0 4px 18px rgba(180, 83, 9, 0.10);
 }
 
 /* Dark card — for inverted/emphasis content (deep emerald) */
 .ts-card-inverse {
-  background: linear-gradient(165deg, #134E4A 0%, #0F766E 100%);
-  border: 1px solid rgba(15, 118, 110, 0.4);
+  background: linear-gradient(165deg, #0B4D45 0%, #0E7C70 100%);
+  border: 1px solid rgba(14, 124, 112, 0.4);
   border-radius: var(--radius-lg);
   color: var(--ts-text-inverse);
-  box-shadow: 0 8px 32px rgba(15, 118, 110, 0.25);
+  box-shadow: 0 8px 32px -8px rgba(14, 124, 112, 0.40), inset 0 1px 0 rgba(255, 255, 255, 0.10);
 }
 
-/* ---------- Pills & Badges ---------- */
+/* ---------- Pills & Badges — Refined ---------- */
 
 /* Accent pill — emerald outline on light tint */
 .ts-pill {
@@ -296,6 +351,7 @@ body {
   letter-spacing: 0.18em;
   text-transform: uppercase;
   font-weight: 600;
+  line-height: 1;
 }
 
 /* Neutral pill — for secondary tags */
@@ -312,6 +368,7 @@ body {
   letter-spacing: 0.18em;
   text-transform: uppercase;
   font-weight: 500;
+  line-height: 1;
 }
 
 /* Solid accent pill — filled emerald */
@@ -321,12 +378,13 @@ body {
   gap: 0.5rem;
   padding: 0.375rem 0.875rem;
   border-radius: 9999px;
-  background: var(--ts-accent);
+  background: linear-gradient(135deg, var(--ts-accent), var(--ts-accent-deep));
   color: #ffffff;
   font-size: 0.6875rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   font-weight: 600;
+  line-height: 1;
   box-shadow: var(--ts-shadow-accent-soft);
 }
 
@@ -345,8 +403,8 @@ body {
   content: "";
   width: 28px;
   height: 1px;
-  background: var(--ts-accent);
-  opacity: 0.7;
+  background: linear-gradient(90deg, transparent, var(--ts-accent));
+  opacity: 0.8;
 }
 
 /* Slide index badge */
@@ -360,7 +418,7 @@ body {
 
 /* Subtle dot grid (for diagram backgrounds) */
 .ts-dot-bg {
-  background-image: radial-gradient(circle, rgba(24, 24, 27, 0.06) 1px, transparent 1px);
+  background-image: radial-gradient(circle, rgba(20, 24, 27, 0.06) 1px, transparent 1px);
   background-size: 24px 24px;
 }
 
@@ -368,10 +426,10 @@ body {
 .ts-grid-bg {
   background-image: linear-gradient(
       to right,
-      rgba(24, 24, 27, 0.035) 1px,
+      rgba(20, 24, 27, 0.04) 1px,
       transparent 1px
     ),
-    linear-gradient(to bottom, rgba(24, 24, 27, 0.035) 1px, transparent 1px);
+    linear-gradient(to bottom, rgba(20, 24, 27, 0.04) 1px, transparent 1px);
   background-size: 36px 36px;
 }
 
@@ -384,10 +442,10 @@ body {
   opacity: 0.5;
 }
 .ts-blob-emerald {
-  background: radial-gradient(circle, rgba(15, 118, 110, 0.18), transparent 70%);
+  background: radial-gradient(circle, rgba(14, 124, 112, 0.22), transparent 70%);
 }
 .ts-blob-warm {
-  background: radial-gradient(circle, rgba(180, 83, 9, 0.12), transparent 70%);
+  background: radial-gradient(circle, rgba(180, 83, 9, 0.14), transparent 70%);
 }
 
 /* ---------- Connectors ---------- */
@@ -405,8 +463,8 @@ body {
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(15, 118, 110, 0.5) 20%,
-    rgba(15, 118, 110, 0.5) 80%,
+    rgba(14, 124, 112, 0.55) 20%,
+    rgba(14, 124, 112, 0.55) 80%,
     transparent
   );
 }
@@ -424,7 +482,7 @@ body {
 
 /* Gradient text (for hero headlines) */
 .ts-gradient-text {
-  background: linear-gradient(135deg, #18181B 0%, #0F766E 100%);
+  background: linear-gradient(135deg, #14181B 0%, #0E7C70 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -442,6 +500,7 @@ body {
   background: var(--ts-accent-tint);
   border: 1px solid var(--ts-border-accent);
   color: var(--ts-accent);
+  box-shadow: var(--ts-shadow-inset);
 }
 .ts-icon-chip-solid {
   display: inline-flex;
@@ -450,9 +509,9 @@ body {
   width: 44px;
   height: 44px;
   border-radius: 12px;
-  background: var(--ts-accent);
+  background: linear-gradient(135deg, var(--ts-accent), var(--ts-accent-deep));
   color: #ffffff;
-  box-shadow: var(--ts-shadow-accent-soft);
+  box-shadow: 0 4px 14px rgba(14, 124, 112, 0.30), inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 
 /* ---------- Scrollbars ---------- */
@@ -635,17 +694,16 @@ body {
   --ts-gold-soft: rgba(217, 119, 6, 0.10);
 
   /* Gradients */
-  --ts-gradient-emerald: linear-gradient(135deg, #0F766E 0%, #134E4A 100%);
-  --ts-gradient-emerald-bright: linear-gradient(135deg, #0D9488 0%, #0F766E 100%);
+  --ts-gradient-emerald: linear-gradient(135deg, #0E7C70 0%, #0B4D45 100%);
+  --ts-gradient-emerald-bright: linear-gradient(135deg, #14B8A6 0%, #0E7C70 100%);
   --ts-gradient-warm: linear-gradient(135deg, #B45309 0%, #92400E 100%);
-  --ts-gradient-mesh: linear-gradient(135deg, #0F766E 0%, #0D9488 50%, #134E4A 100%);
-  --ts-gradient-hero: linear-gradient(135deg, #18181B 0%, #134E4A 70%, #0F766E 100%);
+  --ts-gradient-mesh: linear-gradient(135deg, #0E7C70 0%, #14B8A6 50%, #0B4D45 100%);
+  --ts-gradient-hero: linear-gradient(135deg, #14181B 0%, #0B4D45 70%, #0E7C70 100%);
 
   /* Premium shadows */
-  --ts-shadow-glow-emerald: 0 0 30px rgba(15, 118, 110, 0.25), 0 0 60px rgba(15, 118, 110, 0.12);
-  --ts-shadow-glow-warm: 0 0 30px rgba(180, 83, 9, 0.20);
-  --ts-shadow-float: 0 20px 50px -10px rgba(24, 24, 27, 0.18), 0 8px 16px -4px rgba(24, 24, 27, 0.08);
-  --ts-shadow-soft-float: 0 12px 32px -8px rgba(24, 24, 27, 0.12);
+  --ts-shadow-glow-emerald: 0 0 30px rgba(14, 124, 112, 0.30), 0 0 60px rgba(14, 124, 112, 0.14);
+  --ts-shadow-glow-warm: 0 0 30px rgba(180, 83, 9, 0.22);
+  --ts-shadow-soft-float: 0 12px 32px -8px rgba(20, 24, 27, 0.14);
 }
 
 /* ============================================================
@@ -662,8 +720,17 @@ body {
   position: relative;
   overflow: hidden;
 }
+.ts-bento::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.4), transparent 30%);
+  pointer-events: none;
+  opacity: 0.6;
+}
+.ts-bento > * { position: relative; z-index: 1; }
 .ts-bento:hover {
-  transform: translateY(-4px);
+  transform: translateY(-5px);
   box-shadow: var(--ts-shadow-float);
   border-color: var(--ts-border-accent);
 }
@@ -674,27 +741,28 @@ body {
   position: absolute;
   top: 0; left: 0; right: 0;
   height: 3px;
-  background: var(--ts-gradient-emerald-bright);
-  opacity: 0;
-  transition: opacity 0.4s var(--ts-ease-out);
+  background: linear-gradient(90deg, var(--ts-accent-bright), var(--ts-accent) 50%, var(--ts-accent-deep));
+  opacity: 0.85;
+  z-index: 2;
 }
 .ts-bento-accent:hover::before { opacity: 1; }
 
 /* Glass card — frosted glass effect for floating elements */
 .ts-glass {
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  box-shadow: var(--ts-shadow-soft-float);
+  background: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: var(--ts-shadow-soft), var(--ts-shadow-inset);
 }
 
 /* Glass card on emerald tint */
 .ts-glass-emerald {
-  background: rgba(15, 118, 110, 0.06);
+  background: rgba(14, 124, 112, 0.08);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  border: 1px solid rgba(15, 118, 110, 0.18);
+  border: 1px solid rgba(14, 124, 112, 0.20);
+  box-shadow: var(--ts-shadow-inset);
 }
 
 /* Gradient border card — animated gradient frame */
@@ -741,11 +809,11 @@ body {
 
 /* Deep gradient card (premium emphasis) */
 .ts-card-deep {
-  background: var(--ts-gradient-emerald);
-  border: 1px solid rgba(15, 118, 110, 0.4);
-  border-radius: var(--radius-lg);
+  background: linear-gradient(155deg, #0B4D45 0%, #0E7C70 60%, #0D6357 100%);
+  border: 1px solid rgba(14, 124, 112, 0.4);
+  border-radius: var(--radius-xl);
   color: var(--ts-text-inverse);
-  box-shadow: 0 12px 36px -8px rgba(15, 118, 110, 0.4);
+  box-shadow: 0 12px 36px -8px rgba(14, 124, 112, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.12);
   position: relative;
   overflow: hidden;
 }
@@ -754,7 +822,17 @@ body {
   position: absolute;
   top: 0; left: 0; right: 0;
   height: 50%;
-  background: radial-gradient(ellipse at top, rgba(255, 255, 255, 0.12), transparent 70%);
+  background: radial-gradient(ellipse at top, rgba(255, 255, 255, 0.14), transparent 70%);
+  pointer-events: none;
+}
+.ts-card-deep::after {
+  content: "";
+  position: absolute;
+  bottom: -30%;
+  right: -10%;
+  width: 60%;
+  height: 60%;
+  background: radial-gradient(circle, rgba(20, 184, 166, 0.25), transparent 70%);
   pointer-events: none;
 }
 
@@ -854,13 +932,13 @@ body {
   transform: translateX(-50%);
   padding: 0.375rem 1rem;
   border-radius: 9999px;
-  background: var(--ts-gradient-emerald);
+  background: linear-gradient(135deg, var(--ts-accent), var(--ts-accent-deep));
   color: #ffffff;
   font-size: 0.6875rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  font-weight: 600;
-  box-shadow: 0 6px 18px rgba(15, 118, 110, 0.35);
+  font-weight: 700;
+  box-shadow: 0 6px 18px rgba(14, 124, 112, 0.40), inset 0 1px 0 rgba(255, 255, 255, 0.18);
   white-space: nowrap;
   z-index: 2;
 }
@@ -872,13 +950,13 @@ body {
   right: 1rem;
   padding: 0.25rem 0.625rem;
   border-radius: 6px;
-  background: var(--ts-gradient-emerald);
+  background: linear-gradient(135deg, var(--ts-accent), var(--ts-accent-deep));
   color: #ffffff;
   font-size: 0.625rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  font-weight: 600;
-  box-shadow: 0 4px 12px rgba(15, 118, 110, 0.25);
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(14, 124, 112, 0.30), inset 0 1px 0 rgba(255, 255, 255, 0.18);
   z-index: 2;
 }
 
@@ -894,9 +972,9 @@ body {
   width: 44px;
   height: 44px;
   border-radius: 12px;
-  background: var(--ts-gradient-emerald);
+  background: linear-gradient(135deg, var(--ts-accent), var(--ts-accent-deep));
   color: #ffffff;
-  box-shadow: 0 6px 18px rgba(15, 118, 110, 0.30);
+  box-shadow: 0 4px 14px rgba(14, 124, 112, 0.30), inset 0 1px 0 rgba(255, 255, 255, 0.18);
 }
 
 /* Icon chip with glow ring (animated pulse) */
@@ -911,13 +989,14 @@ body {
   border: 1px solid var(--ts-border-accent);
   color: var(--ts-accent);
   position: relative;
+  box-shadow: var(--ts-shadow-inset);
 }
 .ts-icon-chip-glow::after {
   content: "";
   position: absolute;
   inset: -4px;
   border-radius: 16px;
-  background: radial-gradient(circle, rgba(15, 118, 110, 0.18), transparent 70%);
+  background: radial-gradient(circle, rgba(14, 124, 112, 0.22), transparent 70%);
   opacity: 0;
   transition: opacity 0.4s var(--ts-ease-out);
   pointer-events: none;
@@ -935,6 +1014,7 @@ body {
   background: var(--ts-accent-tint);
   border: 1px solid var(--ts-border-accent);
   color: var(--ts-accent);
+  box-shadow: var(--ts-shadow-inset);
 }
 
 /* Icon chip with status color variants */
@@ -1034,15 +1114,15 @@ body {
    TYPOGRAPHY EXTENSIONS — KPI numbers, gradient text
    ============================================================ */
 
-/* Big KPI number */
+/* Big KPI number — bolder, with accent gradient for emphasis */
 .ts-kpi {
   font-family: var(--font-inter), sans-serif;
   font-variant-numeric: tabular-nums;
   font-feature-settings: "tnum", "ss01";
   font-size: clamp(2.25rem, 4vw, 3.5rem);
   line-height: 1;
-  letter-spacing: -0.03em;
-  font-weight: 700;
+  letter-spacing: -0.035em;
+  font-weight: 800;
   color: var(--ts-text-primary);
 }
 
@@ -1052,13 +1132,13 @@ body {
   font-feature-settings: "tnum", "ss01";
   font-size: clamp(1.75rem, 2.5vw, 2.25rem);
   line-height: 1;
-  letter-spacing: -0.025em;
-  font-weight: 700;
+  letter-spacing: -0.028em;
+  font-weight: 800;
 }
 
 /* Gradient text — emerald variation */
 .ts-gradient-text-emerald {
-  background: linear-gradient(135deg, #0F766E 0%, #134E4A 100%);
+  background: linear-gradient(135deg, #0E7C70 0%, #0B4D45 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -1076,7 +1156,7 @@ body {
 
 /* Gradient text — mesh variation */
 .ts-gradient-text-mesh {
-  background: linear-gradient(135deg, #18181B 0%, #0F766E 50%, #134E4A 100%);
+  background: linear-gradient(135deg, #14181B 0%, #0E7C70 50%, #0B4D45 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -1092,7 +1172,7 @@ body {
   font-size: 0.6875rem;
   letter-spacing: 0.24em;
   text-transform: uppercase;
-  font-weight: 600;
+  font-weight: 700;
 }
 .ts-eyebrow-dot::before {
   content: "";
@@ -1291,13 +1371,13 @@ body {
 
 /* Animated gradient text */
 .ts-gradient-animated {
-  background: linear-gradient(135deg, #18181B, #0F766E, #134E4A, #18181B);
+  background: linear-gradient(135deg, #14181B, #0E7C70, #0B4D45, #0E7C70, #14181B);
   background-size: 300% 300%;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
-  animation: ts-gradient-shift 6s ease-in-out infinite;
+  animation: ts-gradient-shift 8s ease-in-out infinite;
 }
 
 /* Aurora drift utility */
@@ -1334,8 +1414,9 @@ body {
 }
 .ts-progress-dot.active {
   background: var(--ts-accent);
-  width: 24px;
+  width: 28px;
   border-radius: 9999px;
+  box-shadow: 0 0 0 3px var(--ts-accent-soft);
 }
 
 /* ============================================================
@@ -1386,9 +1467,9 @@ body {
   font-family: var(--font-inter), sans-serif;
   font-variant-numeric: tabular-nums;
   font-size: 0.75rem;
-  font-weight: 500;
+  font-weight: 600;
   color: var(--ts-text-faint);
-  letter-spacing: 0.04em;
+  letter-spacing: 0.06em;
 }
 
 /* Watermark (large faint number in background) */
@@ -1403,6 +1484,7 @@ body {
   opacity: 0.04;
   pointer-events: none;
   user-select: none;
+  letter-spacing: -0.04em;
 }
 
 /* Connector arrow (decorative) */
@@ -1417,4 +1499,5 @@ body {
   border: 1px solid var(--ts-border-strong);
   color: var(--ts-accent);
   flex-shrink: 0;
+  box-shadow: var(--ts-shadow-soft);
 }

@@ -610,3 +610,79 @@ Stage Summary:
 - Lint clean, HTTP 200, dev server log clean.
 - Reference repo cloned at `/home/z/ui-ux-pro-max-skill/` remains available for future reference.
 - The user's request "more improvements, more elements, better design organization, more professional components, and better formatting" has been comprehensively addressed with: bento grids, gradient-bordered cards, glass effects, mesh/aurora backgrounds, status pill system, KPI stat blocks, watermarks, corner ornaments, pulse rings, animated gradient text, and a comprehensive semantic color system (success/warning/danger/info).
+
+---
+Task ID: refine-design-v3
+Agent: main (Z.ai Code)
+Task: Major design refinement pass — improve card design, backgrounds, margins, colors, contrast, professionalism, and overall organization across the entire TAJ SABA presentation (17 slides).
+
+Work Log:
+- Read worklog.md, current state of src/presentation/, globals.css, primitives.tsx, Slide01Cover.tsx, Navigation.tsx
+- Captured current state of slides 1-5 via agent-browser (current-01.png ... current-04.png)
+- Used VLM to critically analyze slides 1 & 2 — identified specific issues: flat cards, weak shadows, "dirty" noise texture, weak typography hierarchy, low-contrast secondary text, cluttered vertical edge rails
+- Major overhaul of design tokens in globals.css:
+  * Refined surfaces (--ts-bg slightly cooler linen #F4F1EA, added --ts-surface-sunk for sunken tracks)
+  * Darkened muted text scale (--ts-text-secondary → #3F3F46, --ts-text-muted → #52525B) for better legibility
+  * Refined emerald accent (--ts-accent #0E7C70, brighter --ts-accent-bright #14B8A6, deeper --ts-accent-deep #0B4D45)
+  * Sharper architectural shadows (less spread, more lift, refined float/elevated/card/accent variants)
+  * Added --ts-shadow-inset for subtle inner highlights on icon chips
+  * Added --ts-ease-snap cubic-bezier for snappy micro-interactions
+- Replaced presentation-root background with layered radial spotlight (luminous center + edge vignette + emerald wash + warm amber wash); removed the old dirty noise ::before overlay; added hairline top inner-border
+- Refined card system:
+  * Stronger default shadow + cleaner hover lift
+  * Added NEW .ts-card-accent-bar variant (left emerald accent bar — anchored/branded)
+  * Added NEW .ts-card-accent-top variant (top strip)
+  * Refined deep card with multi-stop gradient + corner glow ::after
+- Refined bento card: now has subtle inner white highlight ::after, accent strip always visible (was hover-only)
+- Refined icon chips: added --ts-shadow-inset for subtle inner highlight
+- Refined pills: tighter line-height: 1, stronger weight on solid pill
+- Refined eyebrow: weight 700, 0.24em tracking
+- Refined KPI numbers: weight 800, tighter letter-spacing (-0.035em)
+- Refined gradient-text variants (emerald/warm/mesh) using new accent palette
+- Refined animated gradient (slower 8s cycle, more color stops for smoother drift)
+- Refined progress dots: active state now 28px wide with accent halo glow
+- Refined card-number, watermark, arrow-connector with subtle inner shadow
+- Refined floating-badge and ribbon with stronger shadows + inner highlight
+- Updated typography scale: ts-display/ts-h1 → font-weight 700 (was 600), tighter tracking
+- Updated primitives.tsx:
+  * StatBlock now uses ts-card ts-card-accent-bar combo (always anchored)
+  * StatBlock trend pill uses font-semibold
+  * StatBlock label uses font-semibold (was font-medium)
+  * SlideHeader: index uses font-bold tracking-widest, accent gradient rule (was hairline), eyebrow uses font-semibold, bilingual labels font-medium
+  * SectionHeading: gap-4 (was gap-3), eyebrowEn uses font-semibold
+  * BentoCard: p-5 lg:p-6 (was p-5) for better breathing room
+  * SlideBrandChip: refined — bolder brand label, vertical separator, ts-mono date
+- Rewrote Slide01Cover.tsx:
+  * Removed cluttered vertical emerald rails on the edges (cleaner look)
+  * Removed the dirty ts-noise overlay (cleaner background)
+  * Strengthened corner brackets (border-2 with rounded corners for refined look)
+  * Tightened the type hierarchy: massive brand (font-bold, -0.045em tracking), animated gradient headline, then stronger rule + brandSub, then Arabic title (font-semibold), then tagline with accent dot halo
+  * KPI StatBlocks automatically inherit the new left-accent-bar treatment
+  * Progress dots and Provider × Client lockup with bolder weights
+- Updated Navigation.tsx:
+  * Larger index numbers (text-base font-bold, totalStr text-sm font-semibold)
+  * Progress bar with gradient fill (bright→accent), accent halo glow, border + sunk track bg
+  * Larger touch targets (h-10 w-10, was h-9 w-9)
+  * Bolder centered brand lockup (font-bold + 0.28em tracking)
+- Verified via Agent Browser + VLM across slides 1, 2, 3, 4, 5, 11, 13, 17 — VLM confirms:
+  * Cover: "Highly polished executive cover with excellent typographic hierarchy, consistent emerald accenting, and sophisticated card design"
+  * Slide 2: "Clean, high-contrast cards with consistent rounded corners and subtle left-border accents"
+  * Slide 3: "Well-structured bento grid layout, with clear separation between the distinct objective blocks"
+  * Slide 11: "Visually balanced with a clean, modern aesthetic and clear visual hierarchy"
+  * Slide 13: "Professional layout with strong use of color coding"
+  * Slide 17: "Strong, high-impact design that successfully reinforces the brand identity"
+- Ran `bun run lint` — clean, no errors. Dev server compiles without warnings.
+
+Stage Summary:
+- All 17 slides automatically benefit from the cascading CSS + primitives overhaul (since they all share ts-* classes and primitives).
+- The presentation now features:
+  * Luminous layered spotlight background with edge vignette
+  * Cards anchored by left emerald accent bars + sharper architectural shadows
+  * Stronger typographic hierarchy (bolder weights, tighter tracking)
+  * Better text contrast (darker muted scale)
+  * Refined emerald palette (#0E7C70 / #14B8A6 / #0B4D45)
+  * Subtle inner highlights on icon chips and pills
+  * Cleaner cover slide (removed cluttered edge rails and noise)
+  * More elegant navigation (larger index, gradient progress bar, bigger touch targets)
+- Key artifacts: globals.css (overhauled), primitives.tsx (refined StatBlock/SlideHeader/SectionHeading/BentoCard/SlideBrandChip), Slide01Cover.tsx (rewritten), Navigation.tsx (refined)
+- VLM verification: design quality improved across the board; remaining notes are content-level (label density, milestone bulleting) not design-level.

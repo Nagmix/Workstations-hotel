@@ -15,15 +15,15 @@ import {
 } from "../primitives";
 
 /**
- * Slide 01 — Cover (ENHANCED MODERN LIGHT)
- * "Linen & Emerald" hero with:
- *  - mixed ambient blobs (emerald + mesh + warm amber) for richer color story
- *  - ts-mesh-bg background layer + ts-noise premium grain overlay
- *  - ts-gradient-animated headline for slow gradient drift
- *  - ts-corner-ornament luxury corner brackets at the four slide edges
- *  - ts-glass-emerald backdrop-blur brand lockup chip at the top
- *  - 4 ts-progress-dot indicators showing slide position
- *  - 3 StatBlock KPI strip near the bottom (Discovery · Objectives · Delivery)
+ * Slide 01 — Cover (PREMIUM REFINED)
+ * A luminous, well-anchored cover with:
+ *  - Layered radial spotlight background (lighter center, edge vignette)
+ *  - Bold typographic hierarchy: massive brand → rule → Arabic title → tagline
+ *  - Hairline top/bottom dashed rules (cinematic frame)
+ *  - Luxury corner brackets at the four corners
+ *  - 4-StatBlock KPI strip with left-accent bars
+ *  - 4 progress dots (slide position indicator)
+ *  - Provider × Client lockup at the bottom
  */
 export default function Slide01Cover() {
   return (
@@ -32,17 +32,17 @@ export default function Slide01Cover() {
       animate="show"
       exit={{ opacity: 0, transition: { duration: 0.4 } }}
       variants={containerStagger}
-      className="slide-stage slide-pad items-center justify-center text-center relative overflow-hidden ts-noise"
+      className="slide-stage slide-pad items-center justify-center text-center relative overflow-hidden"
       aria-roledescription="slide"
       aria-label="Cover"
     >
-      {/* Layer 1: mesh gradient background (very low opacity) */}
+      {/* Layer 1: very faint dot-grid texture for tech feel */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 ts-mesh-bg opacity-50"
+        className="pointer-events-none absolute inset-0 ts-dot-bg opacity-40"
       />
 
-      {/* Layer 2: mixed ambient blobs — emerald + mesh + warm amber */}
+      {/* Layer 2: ambient emerald blobs (anchored top-left & bottom-right) */}
       <motion.div
         initial={{ opacity: 0, scale: 0.85 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -50,27 +50,17 @@ export default function Slide01Cover() {
         className="pointer-events-none absolute inset-0 overflow-hidden"
         aria-hidden="true"
       >
-        {/* Two emerald blobs */}
-        <div className="ts-blob ts-blob-emerald h-[55vh] w-[55vh] -top-[8%] right-[10%]" />
-        <div className="ts-blob ts-blob-emerald h-[45vh] w-[45vh] bottom-[5%] left-[6%]" />
-        {/* One mesh blob (richer color story) */}
-        <div className="ts-blob ts-blob-mesh h-[42vh] w-[42vh] top-[28%] left-[44%] opacity-50 ts-float-slow" />
-        {/* One warm amber blob */}
-        <div className="ts-blob ts-blob-warm h-[28vh] w-[28vh] top-[42%] left-[42%] opacity-60" />
+        <div className="ts-blob ts-blob-emerald h-[45vh] w-[45vh] -top-[10%] right-[8%] opacity-50" />
+        <div className="ts-blob ts-blob-emerald h-[38vh] w-[38vh] bottom-[2%] left-[5%] opacity-40" />
+        <div className="ts-blob ts-blob-warm h-[22vh] w-[22vh] top-[42%] left-[44%] opacity-50 ts-float-slow" />
       </motion.div>
 
-      {/* Subtle dot-grid texture overlay */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 ts-dot-bg opacity-50"
-      />
-
-      {/* Decorative hairlines (top + bottom dashed) */}
+      {/* Decorative top + bottom hairlines (cinematic frame) */}
       <motion.svg
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1.2, delay: 0.4, ease: EASE_OUT }}
-        className="pointer-events-none absolute inset-x-0 top-[14%] h-px w-full"
+        className="pointer-events-none absolute inset-x-0 top-[10%] h-px w-full"
         preserveAspectRatio="none"
         viewBox="0 0 100 1"
         aria-hidden="true"
@@ -91,7 +81,7 @@ export default function Slide01Cover() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1.2, delay: 0.5, ease: EASE_OUT }}
-        className="pointer-events-none absolute inset-x-0 bottom-[14%] h-px w-full"
+        className="pointer-events-none absolute inset-x-0 bottom-[10%] h-px w-full"
         preserveAspectRatio="none"
         viewBox="0 0 100 1"
         aria-hidden="true"
@@ -109,49 +99,25 @@ export default function Slide01Cover() {
         />
       </motion.svg>
 
-      {/* Vertical emerald accent rails (left + right edges) */}
-      <motion.div
-        initial={{ scaleY: 0, opacity: 0 }}
-        animate={{ scaleY: 1, opacity: 1 }}
-        transition={{ duration: 1.1, delay: 0.6, ease: EASE_OUT }}
-        className="pointer-events-none absolute right-6 lg:right-12 top-1/2 -translate-y-1/2 h-[44vh] w-px origin-center"
-        style={{
-          background:
-            "linear-gradient(to bottom, transparent, var(--ts-accent) 30%, var(--ts-accent) 70%, transparent)",
-        }}
-        aria-hidden="true"
-      />
-      <motion.div
-        initial={{ scaleY: 0, opacity: 0 }}
-        animate={{ scaleY: 1, opacity: 1 }}
-        transition={{ duration: 1.1, delay: 0.6, ease: EASE_OUT }}
-        className="pointer-events-none absolute left-6 lg:left-12 top-1/2 -translate-y-1/2 h-[44vh] w-px origin-center"
-        style={{
-          background:
-            "linear-gradient(to bottom, transparent, var(--ts-accent) 30%, var(--ts-accent) 70%, transparent)",
-        }}
-        aria-hidden="true"
-      />
-
       {/* Luxury corner brackets at the four corners of the slide */}
       <span
         aria-hidden="true"
-        className="pointer-events-none absolute top-5 left-5 h-7 w-7 border-t border-l border-[var(--ts-accent)] opacity-50"
+        className="pointer-events-none absolute top-6 left-6 h-8 w-8 border-t-2 border-l-2 border-[var(--ts-accent)] opacity-50 rounded-tl-md"
       />
       <span
         aria-hidden="true"
-        className="pointer-events-none absolute top-5 right-5 h-7 w-7 border-t border-r border-[var(--ts-accent)] opacity-50"
+        className="pointer-events-none absolute top-6 right-6 h-8 w-8 border-t-2 border-r-2 border-[var(--ts-accent)] opacity-50 rounded-tr-md"
       />
       <span
         aria-hidden="true"
-        className="pointer-events-none absolute bottom-5 left-5 h-7 w-7 border-b border-l border-[var(--ts-accent)] opacity-50"
+        className="pointer-events-none absolute bottom-6 left-6 h-8 w-8 border-b-2 border-l-2 border-[var(--ts-accent)] opacity-50 rounded-bl-md"
       />
       <span
         aria-hidden="true"
-        className="pointer-events-none absolute bottom-5 right-5 h-7 w-7 border-b border-r border-[var(--ts-accent)] opacity-50"
+        className="pointer-events-none absolute bottom-6 right-6 h-8 w-8 border-b-2 border-r-2 border-[var(--ts-accent)] opacity-50 rounded-br-md"
       />
 
-      {/* Top-right brand lockup — glass emerald chip with backdrop blur */}
+      {/* Top-right brand lockup */}
       <SlideBrandChip
         brand={PRESENTATION_META.brand}
         date="29 · 08 · 2026"
@@ -160,46 +126,46 @@ export default function Slide01Cover() {
       {/* Top brand chip — glass-emerald with backdrop blur */}
       <motion.div
         variants={fadeUp}
-        className="relative z-10 flex items-center gap-3 mb-10"
+        className="relative z-10 flex items-center gap-3 mb-12"
       >
         <span
-          className="ts-glass-emerald inline-flex items-center gap-2.5 px-4 py-2 rounded-full text-[var(--ts-accent-deep)] lat text-[0.6875rem] tracking-[0.22em] uppercase font-semibold"
+          className="ts-glass-emerald inline-flex items-center gap-2.5 px-4 py-2 rounded-full text-[var(--ts-accent-deep)] lat text-[0.6875rem] tracking-[0.24em] uppercase font-bold"
           dir="ltr"
         >
-          <span className="h-1.5 w-1.5 rounded-full bg-[var(--ts-accent)]" />
+          <span className="h-1.5 w-1.5 rounded-full bg-[var(--ts-accent)] shadow-[0_0_0_3px_var(--ts-accent-soft)]" />
           <span>EXECUTIVE DISCOVERY</span>
           <span className="text-[var(--ts-text-faint)]">·</span>
-          <span>{PRESENTATION_META.date}</span>
+          <span className="font-medium">{PRESENTATION_META.date}</span>
         </span>
       </motion.div>
 
-      {/* Brand lockup — animated gradient headline */}
+      {/* Brand lockup — massive animated gradient headline */}
       <motion.div variants={fadeUp} className="relative z-10">
         <motion.h1
           variants={blurIn}
-          className="lat ts-display font-semibold tracking-tight ts-gradient-animated"
+          className="lat ts-display font-bold tracking-tight ts-gradient-animated"
           style={{
-            letterSpacing: "-0.04em",
+            letterSpacing: "-0.045em",
           }}
         >
           {PRESENTATION_META.brand}
         </motion.h1>
         <motion.div
           variants={fadeUp}
-          className="mt-3 flex items-center justify-center gap-4"
+          className="mt-4 flex items-center justify-center gap-4"
         >
-          <span className="h-px w-14 bg-[var(--ts-border-strong)]" />
-          <span className="lat ts-eyebrow text-[var(--ts-accent-deep)]">
+          <span className="h-px w-16 bg-gradient-to-l from-transparent to-[var(--ts-accent)]" />
+          <span className="lat ts-eyebrow text-[var(--ts-accent-deep)] font-bold">
             {PRESENTATION_META.brandSub}
           </span>
-          <span className="h-px w-14 bg-[var(--ts-border-strong)]" />
+          <span className="h-px w-16 bg-gradient-to-r from-transparent to-[var(--ts-accent)]" />
         </motion.div>
       </motion.div>
 
-      {/* Arabic title */}
+      {/* Arabic title — secondary, refined */}
       <motion.h2
         variants={fadeUp}
-        className="relative z-10 mt-9 ts-h2 text-[var(--ts-text-primary)] font-medium"
+        className="relative z-10 mt-8 ts-h2 text-[var(--ts-text-primary)] font-semibold"
       >
         منصة تاج سبأ الفندقية الذكية
       </motion.h2>
@@ -207,16 +173,16 @@ export default function Slide01Cover() {
       {/* Vision tagline — emphasized with accent dot prefix */}
       <motion.p
         variants={fadeUp}
-        className="relative z-10 mt-5 max-w-3xl ts-body-lg text-[var(--ts-text-secondary)] leading-relaxed flex items-center justify-center gap-3"
+        className="relative z-10 mt-4 max-w-3xl ts-body-lg text-[var(--ts-text-secondary)] leading-relaxed flex items-center justify-center gap-3"
       >
-        <span className="inline-block h-1.5 w-1.5 rounded-full bg-[var(--ts-accent)] shrink-0" />
+        <span className="inline-block h-1.5 w-1.5 rounded-full bg-[var(--ts-accent)] shrink-0 shadow-[0_0_0_3px_var(--ts-accent-soft)]" />
         <span>{VISION_TAGLINE}</span>
       </motion.p>
 
-      {/* 3-StatBlock KPI strip — themed metrics */}
+      {/* 4-StatBlock KPI strip — themed metrics with left-accent bars */}
       <motion.div
         variants={fadeUp}
-        className="relative z-10 mt-12 w-full max-w-4xl mx-auto"
+        className="relative z-10 mt-12 w-full max-w-5xl mx-auto"
       >
         <div className="ts-stat-strip">
           <StatBlock
@@ -334,19 +300,19 @@ export default function Slide01Cover() {
         {/* Provider × Client lockup */}
         <motion.div variants={fadeUp} className="flex items-center gap-5 text-[var(--ts-text-muted)]">
           <div className="flex flex-col items-end gap-0.5">
-            <span className="lat text-[0.625rem] tracking-[0.22em] uppercase text-[var(--ts-text-faint)]">
+            <span className="lat text-[0.625rem] tracking-[0.24em] uppercase font-semibold text-[var(--ts-text-faint)]">
               Provider
             </span>
-            <span className="lat text-sm tracking-[0.18em] uppercase font-semibold text-[var(--ts-text-primary)]">
+            <span className="lat text-sm tracking-[0.18em] uppercase font-bold text-[var(--ts-text-primary)]">
               {PRESENTATION_META.provider}
             </span>
           </div>
-          <span className="text-[var(--ts-accent)] text-lg font-light">×</span>
+          <span className="text-[var(--ts-accent)] text-xl font-light">×</span>
           <div className="flex flex-col items-start gap-0.5">
-            <span className="text-[0.625rem] tracking-[0.22em] uppercase text-[var(--ts-text-faint)]">
+            <span className="text-[0.625rem] tracking-[0.24em] uppercase font-semibold text-[var(--ts-text-faint)]">
               العميل
             </span>
-            <span className="text-sm font-semibold text-[var(--ts-text-primary)]">
+            <span className="text-sm font-bold text-[var(--ts-text-primary)]">
               {PRESENTATION_META.client}
             </span>
           </div>
